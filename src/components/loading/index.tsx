@@ -12,7 +12,7 @@ export function Loading({ className = '' }: LoaderProps) {
     <div className={classes}>
       <div className='relative w-7 h-7 rounded-full'>
         <div className={`${common} border-slate-300'`}></div>
-        <div className={`${common} border-t-amber-500 border-transparent animate-spin`}></div>
+        <div className={`${common} border-t-orange-500 border-transparent animate-spin`}></div>
       </div>
     </div>
   );
