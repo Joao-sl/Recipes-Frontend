@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-
 import Image from 'next/image';
 import type { ImageProps } from 'next/image';
 import type { LinkProps } from 'next/link';
@@ -28,6 +27,8 @@ export function AuthFormLayout({
   loginPage = false,
   onSubmit,
 }: AuthFormProps) {
+  const linkClasses = 'font-bold transition text-orange-400 hover:underline';
+
   return (
     <div
       className={clsx(
@@ -74,26 +75,22 @@ export function AuthFormLayout({
                   <input id='stay-logged-in' type='checkbox' />
                   <label htmlFor='stay-logged-in'>Manter conectado</label>
                 </div>
-                <a
-                  className='font-bold text-orange-400 transition hover:text-orange-400/80'
-                  href='#'
-                >
+                <a className={linkClasses} href='#'>
                   Esqueci a senha
                 </a>
               </div>
             )}
 
-            <div className='text-sm flex flex-col items-center justify-center'>
-              <p className='text-center'>{RegisterOrLoginMsg}&nbsp;</p>
-              <Link
-                {...linkProps}
-                className={clsx(
-                  'font-bold transition',
-                  'text-orange-400',
-                  'hover:text-orange-400/80',
-                )}
-              >
-                {linkText}
+            <div className='text-sm flex flex-col gap-4 items-center justify-center'>
+              <p>
+                {RegisterOrLoginMsg}{' '}
+                <Link {...linkProps} className={linkClasses}>
+                  {linkText}
+                </Link>
+              </p>
+
+              <Link className={linkClasses} href={'/'}>
+                Voltar para a página inicial
               </Link>
             </div>
           </form>
