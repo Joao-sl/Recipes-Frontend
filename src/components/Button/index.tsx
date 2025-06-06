@@ -16,7 +16,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const common =
-    'flex gap-1 items-center cursor-pointer rounded-md text-white transition duration-600';
+    'flex gap-1 items-center cursor-pointer rounded-md text-white transition duration-600 disabled:cursor-not-allowed disabled:bg-slate-400';
 
   const buttonClasses = {
     default: clsx('bg-orange-400', 'hover:bg-orange-400/80', common),

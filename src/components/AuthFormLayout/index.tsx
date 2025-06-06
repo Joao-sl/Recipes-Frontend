@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Button } from '../Button';
+
 import Image from 'next/image';
 import type { ImageProps } from 'next/image';
 import type { LinkProps } from 'next/link';
@@ -40,6 +40,7 @@ export function AuthFormLayout({
           className={clsx(
             'flex flex-col items-center justify-center',
             'py-8 px-8 md:px-15',
+            'shadow-lg shadow-black/25',
             'rounded-2xl bg-slate-100',
           )}
         >
@@ -50,7 +51,7 @@ export function AuthFormLayout({
               fill
               sizes='104px'
               priority
-              className='object-cover object-center rounded-full'
+              className='object-cover object-center rounded-full ring-3 ring-orange-400'
               aria-hidden='true'
             />
           </div>
@@ -81,12 +82,6 @@ export function AuthFormLayout({
                 </a>
               </div>
             )}
-
-            <div className='flex justify-center'>
-              <Button size='flex' type='submit'>
-                Enviar
-              </Button>
-            </div>
 
             <div className='text-sm flex flex-col items-center justify-center'>
               <p className='text-center'>{RegisterOrLoginMsg}&nbsp;</p>

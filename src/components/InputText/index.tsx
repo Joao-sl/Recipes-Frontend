@@ -8,7 +8,8 @@ type InputTextProps = {
 } & React.ComponentProps<'input'>;
 
 export function InputText({ labelText = '', id, Icon = false, ...props }: InputTextProps) {
-  const commonClassesInput = 'border-2 border-slate-300 bg-slate-200 transition duration-500';
+  const bgDisabled = props.disabled ? 'bg-slate-300' : 'bg-slate-200';
+  const commonClassesInput = clsx('border-2 border-slate-300 transition duration-500', bgDisabled);
 
   return (
     <div className='flex flex-col gap-1'>
@@ -23,16 +24,21 @@ export function InputText({ labelText = '', id, Icon = false, ...props }: InputT
           className={clsx(
             commonClassesInput,
             'flex items-center gap-1 pl-2 rounded-md',
-            'focus-within:border-orange-400',
-            'bg-orange-400',
+            'focus-within:border-orange-400 group',
           )}
         >
-          <label htmlFor={id}>{<Icon size={18} color='#475569' />}</label>
+          <label className='' htmlFor={id}>
+            {<Icon size={18} color='#475569' />}
+          </label>
 
           <input
             id={id}
             {...props}
-            className={clsx('outline-none py-1 w-full', 'placeholder:text-sm')}
+            className={clsx(
+              'outline-none py-1 w-full',
+              'placeholder:text-sm',
+              'disabled:cursor-not-allowed disabled:group-disabled:bg-amber-600',
+            )}
           />
         </div>
       )) || (
