@@ -9,5 +9,8 @@
       "clsx\\(([^)]*)\\)",
       "(?:'|\"|`)([^']*)(?:'|\"|`)"
     ]
-  ]
+  ],
+  "code-runner.executorMap": {
+    "typescript": "cls ; npx tsx"
+  }
 }
