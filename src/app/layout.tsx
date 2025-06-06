@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ToastifyContainer } from '@/components/ToastifyContainer';
 
 const site_name = process.env.NEXT_PUBLIC_SITE_NAME || 'change-me';
 
@@ -18,7 +19,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang='pt_BR' className='light'>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastifyContainer />
+      </body>
     </html>
   );
 }
