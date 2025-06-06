@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ToastifyContainer } from '@/components/ToastifyContainer';
-
-const site_name = process.env.NEXT_PUBLIC_SITE_NAME || 'change-me';
+import { SITE_NAME } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: {
-    template: `%s - ${site_name}`,
-    default: site_name,
+    template: `%s - ${SITE_NAME}`,
+    default: SITE_NAME,
   },
-  applicationName: site_name,
+  applicationName: SITE_NAME,
 };
 
 type RootLayoutProps = {

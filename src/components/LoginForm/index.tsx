@@ -3,11 +3,29 @@
 import { KeyRoundIcon, User2Icon } from 'lucide-react';
 import { AuthFormLayout } from '../AuthFormLayout';
 import { InputText } from '../InputText';
+import { Button } from '../Button';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function LoginForm() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const queryParams = window.location.search;
+    if (queryParams.includes('created=success')) {
+      toast.dismiss();
+      toast.success('Conta criada com sucesso');
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete('created');
+      router.replace(url.toString());
+    }
+  }, [router]);
+
   function HandleSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
-    alert('ToDo');
+    toast.info('TODO');
   }
 
   return (
@@ -44,6 +62,9 @@ export function LoginForm() {
         placeholder='Sua senha'
         required
       />
+      <Button size='flex' type='submit'>
+        Entrar
+      </Button>
     </AuthFormLayout>
   );
 }
