@@ -62,7 +62,7 @@ export function RegisterForm() {
         return;
       }
     } catch {
-      toast.error('Desculpe, algo deu errado tente novamente mais tarde.');
+      toast.error('Desculpe algo deu errado, tente novamente mais tarde.');
     } finally {
       setIsPending(false);
     }
