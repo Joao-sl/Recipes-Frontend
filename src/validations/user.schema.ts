@@ -23,3 +23,5 @@ export const RegisterUserSchema = z
     path: ['password'],
     error: 'As senhas não coincidem',
   });
+
+export const LoginUserSchema = RegisterUserSchema.pick({ username: true, password: true });
