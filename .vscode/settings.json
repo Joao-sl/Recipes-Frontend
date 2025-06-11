@@ -11,6 +11,7 @@
     ]
   ],
   "code-runner.executorMap": {
-    "typescript": "cls ; npx tsx"
+    "typescript": "cls ; npx tsx",
+    "javascript": "cls ; node"
   }
 }
