@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 type InputTextProps = {
   id: string;
-  labelText?: string;
+  labelText?: React.ReactNode;
   Icon?: LucideIcon | false;
 } & React.ComponentProps<'input'>;
 
