@@ -1,3 +1,9 @@
+import {
+  getInputBgClass,
+  inputCommonClasses,
+  inputWrapper,
+  labelClasses,
+} from '@/utils/styles/inputStyles';
 import clsx from 'clsx';
 import type { LucideIcon } from 'lucide-react';
 
@@ -8,23 +14,25 @@ type InputTextProps = {
 } & React.ComponentProps<'input'>;
 
 export function InputText({ labelText = '', id, Icon = false, ...props }: InputTextProps) {
-  const bgDisabled = props.disabled ? 'bg-slate-300' : 'bg-slate-200';
-  const commonClassesInput = clsx('border-2 border-slate-300 transition duration-500', bgDisabled);
+  const iconInputClasses = clsx(
+    'border-2 border-slate-300 transition duration-500',
+    getInputBgClass(props.disabled),
+  );
 
   return (
-    <div className='flex flex-col gap-1'>
+    <div className={inputWrapper}>
       {labelText && (
-        <label className='text-sm' htmlFor={id}>
+        <label className={labelClasses} htmlFor={id}>
           {labelText}
         </label>
       )}
 
-      {(Icon && (
+      {Icon ? (
         <div
           className={clsx(
-            commonClassesInput,
+            iconInputClasses,
             'flex items-center gap-1 pl-2 rounded-md',
-            'focus-within:border-orange-400 group',
+            'focus-within:border-orange-500',
           )}
         >
           <label className='' htmlFor={id}>
@@ -37,18 +45,13 @@ export function InputText({ labelText = '', id, Icon = false, ...props }: InputT
             className={clsx(
               'outline-none py-1 w-full',
               'placeholder:text-sm',
-              'disabled:cursor-not-allowed disabled:group-disabled:bg-amber-600',
+              'disabled:cursor-not-allowed',
             )}
           />
         </div>
-      )) || (
+      ) : (
         <input
-          className={clsx(
-            commonClassesInput,
-            'outline-none py-1 px-2 w-full rounded-md',
-            'placeholder:text-sm',
-            'focus:border-orange-400',
-          )}
+          className={clsx(inputCommonClasses, getInputBgClass(props.disabled))}
           {...props}
           id={id}
         />

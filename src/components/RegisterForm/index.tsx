@@ -11,11 +11,8 @@ import { Button } from '../Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { Loading } from '../Loading';
-
-type FormErrors = {
-  formErrors?: string[];
-  fieldErrors?: Record<string, string[]>;
-};
+import type { FormErrors } from '@/validations/formErrorsType';
+import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
 
 export function RegisterForm() {
   const router = useRouter();
@@ -51,15 +48,13 @@ export function RegisterForm() {
         }),
       });
 
-      if (response.status === 400) {
-        const errors = await response.json();
-        setFormErrors(errors);
-        return;
-      } else if (!response.ok) {
-        const errors = await response.json();
+      if (!response.ok) {
         toast.dismiss();
-        toast.error(errors.formError);
-        return;
+        if (response.status === 400) {
+          const errors = await response.json();
+          setFormErrors(errors);
+        }
+        fetchErrorHandler(response.status);
       }
     } catch {
       toast.error('Desculpe algo deu errado, tente novamente mais tarde.');
