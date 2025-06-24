@@ -173,7 +173,7 @@ export function ProfileForm({ initialData }: ProfileData) {
           className='my-5 border border-slate-300 p-6 rounded-md w-full'
           onSubmit={handleAvatarSubmit}
         >
-          <div className='flex items-center gap-6'>
+          <div className={clsx('flex flex-col items-center gap-4', 'sm:gap-6 sm:flex-row')}>
             <div className='h-24 w-24 min-w-24 min-h-24 relative'>
               <Image
                 className='rounded-full object-cover z-0 shadow-md'
@@ -213,15 +213,17 @@ export function ProfileForm({ initialData }: ProfileData) {
             </div>
           </div>
 
-          <Button
-            variant='defaultDarker'
-            type='submit'
-            className='flex justify-center items-center mt-6 w-[126px]'
-            disabled={isPendingAvatar}
-          >
-            {!isPendingAvatar && 'Salvar Avatar'}
-            {isPendingAvatar && <Loading />}
-          </Button>
+          <div className={clsx('flex justify-center items-center', 'sm:justify-start')}>
+            <Button
+              variant='defaultDarker'
+              type='submit'
+              className='mt-6 w-[126px]'
+              disabled={isPendingAvatar}
+            >
+              {!isPendingAvatar && 'Salvar Avatar'}
+              {isPendingAvatar && <Loading />}
+            </Button>
+          </div>
         </form>
 
         <h1 className='font-bold text-3xl text-slate-800 mt-4'>Editar Perfil</h1>
