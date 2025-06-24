@@ -1,6 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 import { API_DOMAIN } from '@/lib/config';
+import { InvalidRefreshTokenError, NetworkError } from '@/utils/errors';
 
 type TokenPair = {
   access: string;
@@ -17,6 +18,7 @@ export const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
   sameSite: 'lax' as const,
+  path: '/',
 };
 
 export async function setRefreshCookie(refreshToken: string) {
@@ -62,11 +64,13 @@ export async function getAccessToken() {
 
 export async function getRefreshToken() {
   const cookieStore = await cookies();
-  const refresh = cookieStore.get(ACCESS_COOKIE)?.value ?? null;
+  const refresh = cookieStore.get(REFRESH_COOKIE)?.value ?? null;
   return refresh;
 }
 
-export async function isTokenExpired(token: string, almostExpired = 30) {
+export async function isTokenExpired(token: string | null, almostExpired = 30) {
+  if (!token) return true;
+
   try {
     const { exp } = jwtDecode<DecodedToken>(token);
     const now_in_seconds = Math.floor(Date.now() / 1000);
@@ -80,8 +84,8 @@ export async function isTokenExpired(token: string, almostExpired = 30) {
 export async function refreshAccessToken() {
   const refresh = await getRefreshToken();
 
-  if (!refresh) {
-    throw new Error('NoRefreshToken');
+  if (!refresh || (await isTokenExpired(refresh))) {
+    throw new InvalidRefreshTokenError();
   }
 
   try {
@@ -93,16 +97,15 @@ export async function refreshAccessToken() {
       body: JSON.stringify({ refresh }),
     });
 
-    if (!response.ok) {
-      throw new Error(`InvalidRefreshToken:${response.status}`);
-    }
+    if (!response.ok) throw new InvalidRefreshTokenError(`status: ${response.status}`);
 
     const { access } = await response.json();
     await setAccessCookie(access);
 
     return access;
   } catch (error) {
-    throw new Error(`NetworkError:${error}`);
+    if (error instanceof InvalidRefreshTokenError) throw error;
+    throw new NetworkError((error as Error).message);
   }
 }
 
@@ -110,7 +113,22 @@ export async function ensureValidAccessToken() {
   let access = await getAccessToken();
 
   if (!access || (await isTokenExpired(access))) {
-    access = await refreshAccessToken();
+    try {
+      access = await refreshAccessToken();
+
+      return access;
+    } catch (error) {
+      switch (error) {
+        case error instanceof NetworkError:
+          return null;
+
+        case error instanceof InvalidRefreshTokenError:
+          return null;
+
+        default:
+          return null;
+      }
+    }
   }
   return access;
 }
