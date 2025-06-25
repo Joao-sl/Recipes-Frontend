@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from '../Button';
 import { InputDate } from '../InputDate';
@@ -9,7 +8,6 @@ import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { CloudUploadIcon } from 'lucide-react';
 import { Loading } from '../Loading';
 import { UserProfileSchema } from '@/validations/user.schema';
 import { FormErrors } from '@/validations/formErrorsType';
@@ -17,6 +15,7 @@ import { z } from 'zod/v4';
 import { fileSizeValidator } from '@/utils/fileSizeValidator';
 import { isEqual } from 'lodash';
 import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
+import { InputImageWithPreview } from '../InputImageWithPreview';
 
 type ProfileData = {
   initialData?: {
@@ -32,13 +31,10 @@ type ProfileData = {
 export function ProfileForm({ initialData }: ProfileData) {
   const [profileData, setProfileData] = useState(initialData);
   const [maxDate, setMaxDate] = useState<string | number>();
-  const [avatarFile, setAvatarFile] = useState<File | undefined>(undefined);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [profileFormErrors, setProfileFormErrors] = useState<FormErrors>();
   const [isPending, setIsPending] = useState(false);
   const [isPendingAvatar, setIsPendingAvatar] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(
-    profileData?.avatar ?? '/images/user-placeholder.png',
-  );
 
   const router = useRouter();
   const errorClasses = clsx('text-sm text-red-600');
@@ -106,19 +102,17 @@ export function ProfileForm({ initialData }: ProfileData) {
 
   async function handleAvatarSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const avatar = avatarFile;
 
-    if (!avatar) {
+    if (!avatarFile) {
       toast.dismiss();
       toast.error('Nenhuma imagem selecionada.');
       return;
     }
 
-    const validatedFile = fileSizeValidator(avatar, 1);
+    const validatedFile = fileSizeValidator(avatarFile, 1);
     if (!validatedFile) {
       toast.error('O Tamanho máximo da imagem deve ser de 1MB');
-      setAvatarFile(undefined);
-      setAvatarPreview(profileData?.avatar ?? '/images/user-placeholder.png');
+      setAvatarFile(null);
       return;
     }
 
@@ -137,25 +131,13 @@ export function ProfileForm({ initialData }: ProfileData) {
         return fetchErrorHandler(response.status);
       }
 
+      setAvatarFile(null);
       toast.dismiss();
       toast.success('Avatar atualizado com sucesso');
     } catch {
       toast.error('Desculpe, erro interno do servidor, tente novamente mais tarde');
     } finally {
       setIsPendingAvatar(false);
-    }
-  }
-
-  async function handleAvatarPreview(event: React.ChangeEvent<HTMLInputElement>) {
-    const avatar = event.target.files?.[0];
-    setAvatarFile(avatar);
-
-    if (avatar) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setAvatarPreview(reader.result as string);
-      };
-      reader.readAsDataURL(avatar);
     }
   }
 
@@ -173,51 +155,20 @@ export function ProfileForm({ initialData }: ProfileData) {
           className='my-5 border border-slate-300 p-6 rounded-md w-full'
           onSubmit={handleAvatarSubmit}
         >
-          <div className={clsx('flex flex-col items-center gap-4', 'sm:gap-6 sm:flex-row')}>
-            <div className='h-24 w-24 min-w-24 min-h-24 relative'>
-              <Image
-                className='rounded-full object-cover z-0 shadow-md'
-                src={avatarPreview}
-                alt='Seu Avatar'
-                priority={true}
-                fill
-                sizes='138px'
-              />
-            </div>
+          <InputImageWithPreview
+            id='avatar'
+            labelText='Escolha seu avatar'
+            placeholderImageUrl={profileData?.avatar ?? '/images/user-placeholder.png'}
+            imageMaxSizeInMB={1}
+            onFileSelect={setAvatarFile}
+            inputProps={{ name: 'avatar' }}
+          />
 
-            <div className='flex flex-col gap-1 w-full'>
-              <p className='text-center'>Enviar um novo avatar (Max 1MB)</p>
-              <label
-                htmlFor='avatar'
-                className={clsx(
-                  'flex justify-center text-sm p-2 rounded-full transition',
-                  'text-white shadow-md',
-                  'sm:items-center sm:justify-center sm:gap-2',
-                  isPendingAvatar
-                    ? 'bg-slate-400 cursor-not-allowed'
-                    : 'bg-orange-600 hover:bg-orange-500 cursor-pointer',
-                )}
-              >
-                <CloudUploadIcon className='hidden sm:block' />
-                Enviar Imagem
-              </label>
-              <input
-                type='file'
-                accept='image/*'
-                id='avatar'
-                name='avatar'
-                className='hidden'
-                onChange={handleAvatarPreview}
-                disabled={isPendingAvatar}
-              />
-            </div>
-          </div>
-
-          <div className={clsx('flex justify-center items-center', 'sm:justify-start')}>
+          <div className={clsx('flex justify-center items-center', 'sm:justify-start w-full')}>
             <Button
               variant='defaultDarker'
               type='submit'
-              className='mt-6 w-[126px]'
+              className='mt-6 w-[126px] justify-center'
               disabled={isPendingAvatar}
             >
               {!isPendingAvatar && 'Salvar Avatar'}
