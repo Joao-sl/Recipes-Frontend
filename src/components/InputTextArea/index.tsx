@@ -1,9 +1,4 @@
-import {
-  getInputBgClass,
-  inputCommonClasses,
-  inputWrapper,
-  labelClasses,
-} from '@/utils/styles/inputStyles';
+import { inputCommonClasses, inputWrapper, labelClasses } from '@/utils/styles/inputStyles';
 import clsx from 'clsx';
 
 type InputTextAreaProps = {
@@ -20,11 +15,7 @@ export function InputTextArea({ id, labelText, ...props }: InputTextAreaProps) {
         </label>
       )}
 
-      <textarea
-        id={id}
-        {...props}
-        className={clsx(inputCommonClasses, 'min-h-27', getInputBgClass(props.disabled))}
-      ></textarea>
+      <textarea id={id} {...props} className={clsx(inputCommonClasses, 'min-h-27')}></textarea>
     </div>
   );
 }

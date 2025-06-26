@@ -1,19 +1,30 @@
 import clsx from 'clsx';
 
 type LoaderProps = {
-  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+  color?: 'white' | 'orange' | 'gray';
 };
 
-export function Loading({ className = '' }: LoaderProps) {
-  const classes = clsx('flex', 'justify-center', 'items-center');
-  const common = clsx('absolute', 'inset-0', 'border-4', 'rounded-full');
+const spinnerSizeMap = {
+  sm: clsx('spinner-base w-5 h-5 [--spinner-width:4px]'),
+  md: clsx('spinner-base w-8 h-8 [--spinner-width:6px]'),
+  lg: clsx('spinner-base w-11 h-11 [--spinner-width:8px]'),
+};
 
+const spinnerColorMap = {
+  white: 'text-white',
+  orange: 'text-orange-500',
+  gray: 'text-slate-500',
+};
+
+export function LoadingSpinner({ size = 'sm', color = 'white' }: LoaderProps) {
   return (
-    <div className={classes}>
-      <div className={clsx('relative min-h-5 min-w-5 rounded-full', className)}>
-        <div className={`${common} border-slate-300'`}></div>
-        <div className={`${common} border-t-orange-500 border-transparent animate-spin`}></div>
-      </div>
-    </div>
+    <div
+      className={clsx(
+        spinnerSizeMap[size],
+        spinnerColorMap[color],
+        'flex rounded-full animate-spin',
+      )}
+    />
   );
 }

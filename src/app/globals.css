@@ -15,7 +15,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Roboto', sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
 }
 
 .clip-left-shape {
@@ -30,7 +30,9 @@ body {
   clip-path: polygon(8.4% 0, 100% 0, 100% 100%, 0.4% 100%);
 }
 
-.a {
-  border-left: 5px;
-  border-left-color: blue;
+.spinner-base {
+  background: radial-gradient(farthest-side, currentColor 94%, #0000) top/var(--spinner-width) var(--spinner-width) no-repeat,
+    conic-gradient(#0000 30%, currentColor);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - var(--spinner-width)), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - var(--spinner-width)), #000 0);
 }

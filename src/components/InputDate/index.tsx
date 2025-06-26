@@ -1,4 +1,4 @@
-import { getInputBgClass, inputCommonClasses, labelClasses } from '@/utils/styles/inputStyles';
+import { inputCommonClasses, labelClasses } from '@/utils/styles/inputStyles';
 import clsx from 'clsx';
 
 type InputDateProps = {
@@ -16,12 +16,7 @@ export function InputDate({ id, labelText, type = 'date', ...props }: InputDateP
         </label>
       )}
 
-      <input
-        type={type}
-        id={id}
-        {...props}
-        className={clsx('flex', inputCommonClasses, getInputBgClass(props.disabled))}
-      />
+      <input type={type} id={id} {...props} className={clsx('flex', inputCommonClasses)} />
     </div>
   );
 }

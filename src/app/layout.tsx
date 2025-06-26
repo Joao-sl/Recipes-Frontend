@@ -17,7 +17,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
-    <html lang='pt_BR' className='light'>
+    <html lang='pt_BR' className='light bg-gray-50'>
       <body>
         {children}
         <ToastifyContainer />
