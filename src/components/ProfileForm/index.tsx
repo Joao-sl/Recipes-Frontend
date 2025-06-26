@@ -8,7 +8,7 @@ import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { Loading } from '../Loading';
+import { LoadingSpinner } from '../Loading';
 import { UserProfileSchema } from '@/validations/user.schema';
 import { FormErrors } from '@/validations/formErrorsType';
 import { z } from 'zod/v4';
@@ -141,20 +141,17 @@ export function ProfileForm({ initialData }: ProfileData) {
     }
   }
 
-  return (
-    <div>
-      <div
-        className={clsx(
-          'flex flex-col items-center px-6 py-2 rounded-lg max-w-md sm:min-w-lg',
-          'border border-slate-200 bg-slate-50',
-        )}
-      >
-        <h1 className='font-bold text-3xl text-slate-800 mt-4'>Avatar</h1>
+  const formWrapperClasses = clsx(
+    'bg-white p-6 mb-10 border border-gray-200 shadow-w-sm rounded-lg',
+  );
+  const formTitleClasses = clsx('text-2xl text-gray-700 font-semibold mb-6');
 
-        <form
-          className='my-5 border border-slate-300 p-6 rounded-md w-full'
-          onSubmit={handleAvatarSubmit}
-        >
+  return (
+    <div className={'max-w-4xl mx-auto'}>
+      <div className={formWrapperClasses}>
+        <h1 className={formTitleClasses}>Avatar</h1>
+
+        <form className='flex flex-col gap-7 sm:flex-row sm:gap-0 ' onSubmit={handleAvatarSubmit}>
           <InputImageWithPreview
             id='avatar'
             labelText='Escolha seu avatar'
@@ -164,23 +161,25 @@ export function ProfileForm({ initialData }: ProfileData) {
             inputProps={{ name: 'avatar' }}
           />
 
-          <div className={clsx('flex justify-center items-center', 'sm:justify-start w-full')}>
+          <div className='flex sm:justify-end sm:items-baseline-last sm:-ml-2'>
             <Button
               variant='defaultDarker'
               type='submit'
-              className='mt-6 w-[126px] justify-center'
               disabled={isPendingAvatar}
+              className='w-full sm:w-auto mt-2 sm:mt-0'
             >
               {!isPendingAvatar && 'Salvar Avatar'}
-              {isPendingAvatar && <Loading />}
+              {isPendingAvatar && <LoadingSpinner />}
             </Button>
           </div>
         </form>
+      </div>
 
-        <h1 className='font-bold text-3xl text-slate-800 mt-4'>Editar Perfil</h1>
+      <div className={formWrapperClasses}>
+        <h1 className={formTitleClasses}>Editar Perfil</h1>
 
-        <form onSubmit={handleProfileSubmit} className='flex flex-col gap-3 my-4 w-full'>
-          <div>
+        <form onSubmit={handleProfileSubmit} className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:gap-7'>
             <InputText
               id='first_name'
               name='first_name'
@@ -199,9 +198,7 @@ export function ProfileForm({ initialData }: ProfileData) {
                   {val}
                 </p>
               ))}
-          </div>
 
-          <div>
             <InputText
               id='last_name'
               name='last_name'
@@ -212,6 +209,7 @@ export function ProfileForm({ initialData }: ProfileData) {
                 profileFormErrors?.fieldErrors?.last_name ? 'last_name-error' : undefined
               }
             />
+
             {profileFormErrors?.fieldErrors?.last_name &&
               profileFormErrors.fieldErrors.last_name.map((val, index) => (
                 <p id='last_name-error' className={errorClasses} key={index}>
@@ -270,15 +268,9 @@ export function ProfileForm({ initialData }: ProfileData) {
             defaultValue={profileData?.birth_date}
           />
 
-          <Button
-            variant='defaultDarker'
-            size='flex'
-            type='submit'
-            className='mt-6'
-            disabled={isPending}
-          >
+          <Button variant='defaultDarker' type='submit' disabled={isPending}>
             {!isPending && 'Salvar'}
-            {isPending && <Loading />}
+            {isPending && <LoadingSpinner />}
           </Button>
         </form>
       </div>

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 type ButtonVariants = 'default' | 'defaultDarker' | 'careful' | 'ghost';
-type ButtonSizes = 'flex' | 'sm' | 'md' | 'lg';
+type ButtonSizes = 'sm' | 'md' | 'lg';
 
 type ButtonProps = {
   className?: string;
@@ -16,20 +16,19 @@ export function Button({
   ...props
 }: ButtonProps) {
   const common =
-    'flex gap-1 items-center cursor-pointer rounded-md text-white transition duration-600 disabled:cursor-not-allowed disabled:bg-slate-400 ';
+    'flex items-center justify-center gap-4 text-white font-medium cursor-pointer rounded-md transition disabled:bg-slate-200 disabled:text-slate-700 disabled:cursor-not-allowed';
 
   const buttonClasses = {
     default: clsx('bg-orange-500', 'hover:bg-orange-500/80', common),
     defaultDarker: clsx('bg-orange-600', 'hover:bg-orange-500', common),
-    careful: clsx('bg-red-600', 'hover:bg-red-700', common),
+    careful: clsx('bg-red-500', 'hover:bg-red-700', common),
     ghost: clsx('bg-slate-400', 'hover:bg-slate-500', common),
   };
 
   const sizeClasses = {
-    flex: clsx('w-full justify-center px-4 py-1.5 min-h-[36px] [&_svg]:w-5 [&_svg]:h-5'),
-    sm: clsx('p-1.5 text-sm [&_svg]:w-4 [&_svg]:h-4'),
-    md: clsx('px-4 py-1.5 min-h-[36px] [&_svg]:w-5 [&_svg]:h-5'),
-    lg: clsx('px-5 py-2 text-lg [&_svg]:w-6 [&_svg]:h-6'),
+    sm: clsx('text-sm px-3 h-8 [&_svg]:w-4 [&_svg]:h-4'),
+    md: clsx('text-sm px-4 h-10 [&_svg]:w-5 [&_svg]:h-5'),
+    lg: clsx('text-md px-5 h-12 [&_svg]:w-6 [&_svg]:h-6'),
   };
 
   return (

@@ -1,23 +1,24 @@
 'use client';
 
 import {
-  ChefHatIcon,
+  BookOpenIcon,
   CookingPotIcon,
   HomeIcon,
   LogOutIcon,
   MenuIcon,
   PlusIcon,
-  ShieldUserIcon,
+  ShieldIcon,
   UserRoundIcon,
   XIcon,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { SITE_NAME } from '@/lib/config';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { Button } from '../Button';
 
 export function ProfileMenu() {
   const router = useRouter();
@@ -42,17 +43,18 @@ export function ProfileMenu() {
     setIsOpen(false);
   }, [path]);
 
-  const activeClasses = 'bg-orange-600 text-white font-bold cursor-default';
+  const activeClasses = 'bg-orange-600 text-white hover:bg-orange-600 cursor-default';
   const linkClasses = clsx(
-    'flex items-center justify-start gap-1 text-sm h-9 px-4 rounded transition',
-    'hover:bg-orange-600 hover:text-white [&_svg]:w-[20px] [&_svg]:h-[20px]',
+    'flex items-center gap-3 text-sm text-gray-800 px-3 py-2 rounded-lg',
+    'hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px]',
   );
+  const subTitleMenuClasses = 'text-sm text-gray-500 font-medium mb-3';
 
   const profileLinks = [
     { href: '/profile', labelIcon: UserRoundIcon, label: 'Perfil' },
-    { href: '/add-recipe', labelIcon: PlusIcon, label: 'Enviar nova receita' },
-    { href: '/my-recipes', labelIcon: ChefHatIcon, label: 'Minhas Receitas' },
-    { href: '/security', labelIcon: ShieldUserIcon, label: 'Segurança da Conta' },
+    { href: '/new-recipe', labelIcon: PlusIcon, label: 'Enviar nova receita' },
+    { href: '/my-recipes', labelIcon: BookOpenIcon, label: 'Minhas Receitas' },
+    { href: '/security', labelIcon: ShieldIcon, label: 'Segurança da Conta' },
   ];
 
   const siteLinks = [
@@ -62,20 +64,20 @@ export function ProfileMenu() {
 
   return (
     <>
-      <div className='md:hidden flex justify-center py-1 mb-4 rounded-md bg-slate-200'>
-        <button
-          className={clsx('md:hidden ', linkClasses)}
+      <div className='flex md:hidden'>
+        <Button
+          className={'w-full rounded-none'}
           onClick={() => setIsOpen(state => !state)}
           aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         >
-          {isOpen ? <XIcon /> : <MenuIcon />}
+          {isOpen ? <XIcon /> : <MenuIcon size={22} absoluteStrokeWidth />}
           {isOpen ? 'Fechar' : 'Menu'}
-        </button>
+        </Button>
       </div>
 
       {isOpen && (
         <div
-          className={clsx('fixed inset-0 z-10 backdrop-filter backdrop-brightness-40', 'md:hidden')}
+          className={clsx('fixed inset-0 z-10 backdrop-filter backdrop-brightness-40 md:hidden')}
           onClick={() => setIsOpen(false)}
           aria-hidden='true'
         />
@@ -83,16 +85,16 @@ export function ProfileMenu() {
 
       <nav
         className={clsx(
-          'flex overflow-hidden max-w-57 min-w-57 py-4 px-2 top-20 z-20',
-          'border border-slate-200 text-slate-700 bg-slate-100',
-          'rounded-md transition duration-600',
-          'md:translate-x-0 md:opacity-100 md:sticky md:min-h-screen',
-          isOpen ? 'translate-x-0 absolute opacity-100' : '-translate-x-[107%] absolute opacity-0',
+          'flex max-w-64 min-w-64 p-6 h-screen border-r border-gray-200 z-50 transition duration-500',
+          'md:sticky md:translate-x-0 md:opacity-100',
+          isOpen
+            ? 'translate-x-0 absolute opacity-100 bg-gray-50 h-screen min-h-[500px] rounded-lg'
+            : '-translate-x-[107%] absolute opacity-0',
         )}
         role='navigation'
         aria-label='Menu de navegação do usuário'
       >
-        <div className={clsx('flex flex-col gap-0.5 w-screen relative')}>
+        <div className={clsx('w-screen relative')}>
           <button
             className='md:hidden absolute left-[91%] top-[-7px] cursor-pointer transition hover:text-red-700'
             onClick={() => setIsOpen(state => !state)}
@@ -100,10 +102,9 @@ export function ProfileMenu() {
             <XIcon size={20} />
           </button>
 
-          <div className='flex flex-col gap-0.5'>
-            <h1 className='text-center font-bold pb-4'>{SITE_NAME.toUpperCase()}</h1>
-            <h2 className='text-sm text-slate-600 pb-1'>Configurações</h2>
-
+          <h1 className='text-xl text-gray-800 font-bold mb-8'>{SITE_NAME.toUpperCase()}</h1>
+          <h2 className={subTitleMenuClasses}>Configurações</h2>
+          <div className='space-y-1'>
             {profileLinks.map(({ href, labelIcon: Icon, label }) => {
               const isActive = path === href;
               return (
@@ -120,8 +121,8 @@ export function ProfileMenu() {
             })}
           </div>
 
-          <div className='flex flex-col gap-0.5 pt-8'>
-            <h2 className='text-sm text-slate-600 pb-1'>Navegação</h2>
+          <div className='space-y-1 mt-6'>
+            <h2 className={subTitleMenuClasses}>Navegação</h2>
             {siteLinks.map(({ href, labelIcon: Icon, label }) => {
               return (
                 <Link key={href} href={href} className={`${linkClasses}`}>
@@ -132,9 +133,9 @@ export function ProfileMenu() {
             })}
           </div>
 
-          <div className='flex items-end h-full mt-10' onClick={handleLogout}>
+          <div className='absolute bottom-1' onClick={handleLogout}>
             <button className={linkClasses}>
-              <LogOutIcon size={20} /> Sair
+              <LogOutIcon size={18} /> Sair
             </button>
           </div>
         </div>

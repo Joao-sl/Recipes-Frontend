@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoginUserSchema } from '@/validations/user.schema';
-import { Loading } from '../Loading';
+import { LoadingSpinner } from '../Loading';
 
 export function LoginForm() {
   const router = useRouter();
@@ -133,8 +133,8 @@ export function LoginForm() {
         {error && <p className='text-sm text-red-600 pt-0.5'>{error}</p>}
       </div>
 
-      <Button size='flex' type='submit' disabled={isPending} aria-busy={isPending}>
-        Entrar {isPending && <Loading />}
+      <Button type='submit' disabled={isPending} aria-busy={isPending}>
+        Entrar {isPending && <LoadingSpinner />}
       </Button>
     </AuthFormLayout>
   );

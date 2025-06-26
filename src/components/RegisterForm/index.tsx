@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Button } from '../Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { Loading } from '../Loading';
+import { LoadingSpinner } from '../Loading';
 import type { FormErrors } from '@/validations/formErrorsType';
 import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
 
@@ -189,14 +189,8 @@ export function RegisterForm() {
           ))}
       </div>
 
-      <Button
-        size='flex'
-        type='submit'
-        disabled={isPending}
-        aria-busy={isPending}
-        aria-disabled={isPending}
-      >
-        Cadastrar {isPending && <Loading />}
+      <Button type='submit' disabled={isPending} aria-busy={isPending} aria-disabled={isPending}>
+        Cadastrar {isPending && <LoadingSpinner />}
       </Button>
     </AuthFormLayout>
   );

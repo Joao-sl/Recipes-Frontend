@@ -1,15 +1,8 @@
 import clsx from 'clsx';
 
-export const inputWrapper = clsx('flex flex-col gap-0.5');
-
-export const labelClasses = clsx('text-sm');
-
-export const getInputBgClass = (disabled: boolean | undefined) =>
-  clsx(disabled ? 'bg-slate-300' : 'bg-slate-200');
-
+export const inputWrapper = clsx('flex flex-col');
+export const labelClasses = clsx('text-sm text-gray-700 font-medium');
 export const inputCommonClasses = clsx(
-  'border-2 border-slate-300 outline-none py-1 px-2 w-full rounded-md',
-  'placeholder:text-sm',
-  'transition duration-500 focus:border-orange-500',
-  'disabled:cursor-not-allowed',
+  'text-sm py-2 px-3 mt-3 border border-slate-200 rounded-md outline-none transition duration-500',
+  'focus:border-orange-400 disabled:bg-slate-200 placeholder:text-sm',
 );

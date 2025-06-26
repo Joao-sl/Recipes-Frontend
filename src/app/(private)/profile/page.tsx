@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { ProfileForm } from '@/components/ProfileForm';
 import { Metadata } from 'next';
 import { getAccessToken, getRefreshToken } from '@/lib/auth/manage-user-session';
@@ -13,10 +12,6 @@ export default async function ProfilePage() {
   const refresh = await getRefreshToken();
   const access = await getAccessToken();
   const url = new URL('/api/me', PUBLIC_SITE_URL);
-  const pageWrapperClasses = clsx(
-    'flex justify-center rounded-md',
-    'sm:py-6 sm:border sm:bg-slate-100 sm:border-slate-200',
-  );
 
   const response = await fetch(url, {
     method: 'GET',
@@ -37,7 +32,7 @@ export default async function ProfilePage() {
   if (!response.ok) {
     console.log(response);
     return (
-      <div className={pageWrapperClasses}>
+      <div className={'flex-1 py-8 px-3 lg:p-8'}>
         <ProfileForm />
       </div>
     );
@@ -45,7 +40,7 @@ export default async function ProfilePage() {
 
   const profileData = await response.json();
   return (
-    <div className={pageWrapperClasses}>
+    <div className={'flex-1 py-8 px-3 lg:p-8'}>
       <ProfileForm initialData={profileData.profile} />
     </div>
   );
