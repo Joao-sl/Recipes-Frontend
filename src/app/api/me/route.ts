@@ -75,7 +75,7 @@ export async function PATCH(request: NextRequest) {
     });
 
     if (!response.ok) {
-      return NextResponse.json(response);
+      return NextResponse.json(await response.json(), { status: response.status });
     }
 
     revalidateTag('user-updated');

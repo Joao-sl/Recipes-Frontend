@@ -16,7 +16,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const common =
-    'flex items-center justify-center gap-4 text-white font-medium cursor-pointer rounded-md transition disabled:bg-slate-200 disabled:text-slate-700 disabled:cursor-not-allowed';
+    'flex items-center justify-center text-white font-medium cursor-pointer rounded-md transition disabled:bg-slate-200 disabled:text-slate-700 disabled:cursor-not-allowed';
 
   const buttonClasses = {
     default: clsx('bg-orange-500', 'hover:bg-orange-500/80', common),
@@ -26,9 +26,9 @@ export function Button({
   };
 
   const sizeClasses = {
-    sm: clsx('text-sm px-3 h-8 [&_svg]:w-4 [&_svg]:h-4'),
-    md: clsx('text-sm px-4 h-10 [&_svg]:w-5 [&_svg]:h-5'),
-    lg: clsx('text-md px-5 h-12 [&_svg]:w-6 [&_svg]:h-6'),
+    sm: clsx('gap-1 text-sm px-3 h-8 [&_svg]:w-4 [&_svg]:h-4'),
+    md: clsx('gap-4 text-sm px-4 h-10 [&_svg]:w-5 [&_svg]:h-5'),
+    lg: clsx('gap-4 text-md px-5 h-12 [&_svg]:w-6 [&_svg]:h-6'),
   };
 
   return (
