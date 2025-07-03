@@ -16,6 +16,11 @@ import { fileSizeValidator } from '@/utils/fileSizeValidator';
 import { isEqual } from 'lodash';
 import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
 import { InputImageWithPreview } from '../InputImageWithPreview';
+import {
+  contentMaxSize,
+  formTitleClasses,
+  formWrapperClasses,
+} from '@/utils/styles/privatePageStyles';
 
 type ProfileData = {
   initialData?: {
@@ -44,6 +49,7 @@ export function ProfileForm({ initialData }: ProfileData) {
       toast.error('Desculpe não conseguimos recuperar os dados do seu perfil', {
         ariaLabel: 'Desculpe não conseguimos recuperar os dados do seu perfil',
         role: 'alert',
+        toastId: 'profile-error',
       });
     }
     setProfileData(initialData);
@@ -141,13 +147,8 @@ export function ProfileForm({ initialData }: ProfileData) {
     }
   }
 
-  const formWrapperClasses = clsx(
-    'bg-white p-6 mb-10 border border-gray-200 shadow-w-sm rounded-lg',
-  );
-  const formTitleClasses = clsx('text-2xl text-gray-700 font-semibold mb-6');
-
   return (
-    <div className={'max-w-4xl mx-auto'}>
+    <div className={contentMaxSize}>
       <div className={formWrapperClasses}>
         <h1 className={formTitleClasses}>Avatar</h1>
 

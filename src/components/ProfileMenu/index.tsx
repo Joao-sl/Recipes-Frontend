@@ -63,7 +63,7 @@ export function ProfileMenu() {
   ];
 
   return (
-    <>
+    <div className='md:w-64'>
       <div className='flex md:hidden'>
         <Button
           className={'w-full rounded-none'}
@@ -85,11 +85,11 @@ export function ProfileMenu() {
 
       <nav
         className={clsx(
-          'flex max-w-64 min-w-64 p-6 h-screen border-r border-gray-200 z-50 transition duration-500',
-          'md:sticky md:translate-x-0 md:opacity-100',
+          'flex w-64 p-6 h-screen border-r border-gray-200 z-50 transition duration-500',
+          'md:fixed md:translate-x-0 md:opacity-100',
           isOpen
-            ? 'translate-x-0 absolute opacity-100 bg-gray-50 h-screen min-h-[500px] rounded-lg'
-            : '-translate-x-[107%] absolute opacity-0',
+            ? 'translate-x-0 absolute top-0 opacity-100 bg-gray-50 h-screen min-h-[500px] rounded-lg'
+            : '-translate-x-[107%] absolute top-0 opacity-0',
         )}
         role='navigation'
         aria-label='Menu de navegação do usuário'
@@ -144,6 +144,6 @@ export function ProfileMenu() {
           {ariaErrorMessage}
         </div>
       </nav>
-    </>
+    </div>
   );
 }

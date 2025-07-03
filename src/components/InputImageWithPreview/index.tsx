@@ -65,7 +65,7 @@ export function InputImageWithPreview({
       <div className='flex flex-col ml-6 mt-0.5'>
         {labelText && (
           <p className='text-sm text-gray-600'>
-            {labelText} (Max {imageMaxSizeInMB}MB)
+            {labelText} (Máx. {imageMaxSizeInMB}MB)
           </p>
         )}
 

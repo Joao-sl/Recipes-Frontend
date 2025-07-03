@@ -24,6 +24,7 @@ export function InputText({ labelText, id, Icon = false, className, ...props }: 
             inputCommonClasses,
             'flex items-center gap-3',
             'focus-within:border-orange-500',
+            'focus-within:hover:border-orange-500',
             props.disabled ? 'bg-slate-200' : '',
           )}
         >
