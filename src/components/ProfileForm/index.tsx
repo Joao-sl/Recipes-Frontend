@@ -88,7 +88,7 @@ export function ProfileForm({ initialData }: ProfileData) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataParsed.data),
+        body: JSON.stringify({ profile: dataParsed.data }),
       });
 
       if (!response.ok) {
