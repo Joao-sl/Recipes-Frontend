@@ -4,7 +4,7 @@ import {
   isTokenExpired,
   REFRESH_COOKIE,
 } from '@/lib/auth/manage-user-session';
-import { InvalidRefreshTokenError, NetworkError } from '@/utils/errors';
+import { NetworkError } from '@/utils/errors';
 import { cookies } from 'next/headers';
 import { API_DOMAIN } from '@/lib/config';
 import { NextRequest, NextResponse } from 'next/server';
@@ -21,6 +21,9 @@ export async function GET() {
     }
 
     const access = await ensureValidAccessToken();
+    if (access instanceof NetworkError) {
+      return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });
+    }
     if (!access) {
       closeSession();
       return NextResponse.json({ message: 'Invalid Token' }, { status: 401 });
@@ -40,17 +43,9 @@ export async function GET() {
     const profileData = await response.json();
 
     return NextResponse.json(profileData);
-  } catch (error) {
-    if (error instanceof InvalidRefreshTokenError) {
-      closeSession();
-      return NextResponse.json({ message: 'Invalid Token' }, { status: 401 });
-    }
-
-    if (error instanceof NetworkError) {
-      return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });
-    }
+  } catch {
+    return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });
   }
-  return;
 }
 
 export async function PATCH(request: NextRequest) {
@@ -64,6 +59,9 @@ export async function PATCH(request: NextRequest) {
   }
 
   const access = await ensureValidAccessToken();
+  if (access instanceof NetworkError) {
+    return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });
+  }
   try {
     const response = await fetch(`${API_DOMAIN}/api/user/me/`, {
       method: 'PATCH',
@@ -71,7 +69,7 @@ export async function PATCH(request: NextRequest) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${access}`,
       },
-      body: JSON.stringify({ profile: data }),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {

@@ -104,8 +104,7 @@ export async function refreshAccessToken() {
 
     return access;
   } catch (error) {
-    if (error instanceof InvalidRefreshTokenError) throw error;
-    throw new NetworkError((error as Error).message);
+    return new NetworkError((error as Error).message);
   }
 }
 
@@ -120,7 +119,7 @@ export async function ensureValidAccessToken() {
     } catch (error) {
       switch (error) {
         case error instanceof NetworkError:
-          return null;
+          return NetworkError;
 
         case error instanceof InvalidRefreshTokenError:
           return null;

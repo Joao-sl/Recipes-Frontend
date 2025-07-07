@@ -5,6 +5,7 @@ import {
   REFRESH_COOKIE,
 } from '@/lib/auth/manage-user-session';
 import { API_DOMAIN } from '@/lib/config';
+import { NetworkError } from '@/utils/errors';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -20,6 +21,9 @@ export async function PATCH(request: NextRequest) {
   }
 
   const access = await ensureValidAccessToken();
+  if (access instanceof NetworkError) {
+    return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });
+  }
   try {
     const response = await fetch(`${API_DOMAIN}/api/user/me/`, {
       method: 'PATCH',
