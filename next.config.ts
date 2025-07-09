@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [new URL(`${API_DOMAIN}/media/avatars/**`)],
+    remotePatterns: [new URL(`${API_DOMAIN}/media/**`)],
   },
 };
 
