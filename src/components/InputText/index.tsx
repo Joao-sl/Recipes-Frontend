@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { inputCommonClasses, inputWrapper, labelClasses } from '@/utils/styles/inputStyles';
 import type { LucideIcon } from 'lucide-react';
 
 type InputTextProps = {
@@ -11,9 +10,9 @@ type InputTextProps = {
 
 export function InputText({ labelText, id, Icon = false, className, ...props }: InputTextProps) {
   return (
-    <div className={inputWrapper}>
+    <div className='input-wrapper'>
       {labelText && (
-        <label className={labelClasses} htmlFor={id}>
+        <label className='label-standard' htmlFor={id}>
           {labelText}
         </label>
       )}
@@ -21,11 +20,11 @@ export function InputText({ labelText, id, Icon = false, className, ...props }: 
       {Icon ? (
         <div
           className={clsx(
-            inputCommonClasses,
+            'input-standard',
             'flex items-center gap-3',
-            'focus-within:border-orange-500',
-            'focus-within:hover:border-orange-500',
-            props.disabled ? 'bg-slate-200' : '',
+            'focus-within:border-primary',
+            'focus-within:hover:border-primary',
+            props.disabled ? 'bg-disabled' : '',
           )}
         >
           <label className='' htmlFor={id}>
@@ -39,7 +38,7 @@ export function InputText({ labelText, id, Icon = false, className, ...props }: 
           />
         </div>
       ) : (
-        <input className={clsx(inputCommonClasses, className)} {...props} id={id} />
+        <input className={clsx('input-standard', className)} {...props} id={id} />
       )}
     </div>
   );

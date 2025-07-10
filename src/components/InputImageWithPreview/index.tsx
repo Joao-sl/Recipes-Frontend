@@ -54,7 +54,7 @@ export function InputImageWithPreview({
         <Image
           className='rounded-full object-cover z-0 shadow-md'
           src={filePreview}
-          alt='Imagem enviada por você'
+          alt='Seu avatar'
           priority={true}
           fill
           sizes='228px'
@@ -64,7 +64,7 @@ export function InputImageWithPreview({
 
       <div className='flex flex-col ml-6 mt-0.5'>
         {labelText && (
-          <p className='text-sm text-gray-600'>
+          <p className='text-sm text-muted'>
             {labelText} (Máx. {imageMaxSizeInMB}MB)
           </p>
         )}
@@ -73,10 +73,10 @@ export function InputImageWithPreview({
           <label
             htmlFor={id}
             className={clsx(
-              'flex gap-4 items-center text-white text-sm font-medium px-4 h-10 mt-1 sm:mt-0 rounded-md transition',
+              'flex gap-4 items-center text-inverse text-sm font-medium px-4 h-10 mt-1 sm:mt-0 rounded-md transition',
               inputProps?.disabled
                 ? 'bg-slate-400 cursor-not-allowed'
-                : 'bg-orange-600 hover:bg-orange-500 cursor-pointer',
+                : 'bg-primary hover:bg-primary/85 cursor-pointer',
             )}
           >
             <UploadIcon size={16} strokeWidth={3} />

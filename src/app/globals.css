@@ -1,12 +1,82 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-@import "tailwindcss";
-
+@import 'tailwindcss';
+@tailwind utilities;
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* BASE COLORS */
+  --color-primary: theme(colors.orange.500);
+  --color-secondary: theme(colors.orange.600);
+
+  /* HOVER/DISABLED/FOCUS */
+  --color-primary-hover: theme(colors.orange.600);
+  --color-primary-disabled: theme(colors.orange.300);
+  --color-disabled: theme(colors.gray.300);
+
+  /* TEXTS */
+  --color-base: theme(colors.gray.800);
+  --color-muted: theme(colors.gray.500);
+  --color-inverse: theme(colors.white);
+
+  /* BACKGROUNDS */
+  --color-default: theme(colors.gray.50);
+  --color-divider: theme(colors.white);
+  --color-surface: theme(colors.gray.200);
+
+  /* BORDERS */
+  --color-root: theme(colors.gray.200);
+  --color-root-darker: theme(colors.gray.300);
+
+  /* STATUS */
+  --color-success: theme(colors.green.500);
+  --color-warning: theme(colors.yellow.500);
+  --color-error: theme(colors.red.500);
+  --color-info: theme(colors.blue.500);
+}
+
+@layer components {
+  /* BORDERS */
+  .border-standard {
+    @apply border border-root;
+  }
+  .border-standard-darker {
+    @apply border border-root-darker;
+  }
+
+  /* INPUTS */
+  .input-wrapper {
+    @apply flex flex-col;
+  }
+  .label-standard {
+    @apply text-muted text-sm font-medium;
+  }
+  .input-standard {
+    @apply text-sm py-2 px-3 mt-2 border border-root rounded-md outline-none transition duration-500;
+    @apply focus:border-primary/70 disabled:bg-disabled placeholder:text-sm hover:border-slate-300;
+  }
+  .select-input-standard {
+    @apply text-sm py-2 px-3 mt-2 border rounded-md outline-none;
+  }
+
+  /* PRIVATE PAGES */
+  .private-page-wrapper {
+    @apply flex-1 py-8 px-3 lg:p-8;
+  }
+  .form-wrapper {
+    @apply bg-divider border border-root p-6 mb-10 shadow-lg rounded-lg;
+  }
+  .form-title {
+    @apply text-2xl text-base font-semibold mb-6;
+  }
+  .content-max-size {
+    @apply max-w-4xl mx-auto;
+  }
+}
 
 :root {
   --toastify-font-family: 'Roboto' sans-serif;
-  --toastify-color-progress-error: #FF0000;
+  --toastify-color-progress-error: #ff0000;
   --toastify-color-progress-info: var(--toastify-color-info);
   --toastify-color-progress-success: var(--toastify-color-success);
   --toastify-color-progress-warning: var(--toastify-color-warning);
@@ -15,7 +85,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    Segoe UI Symbol, 'Noto Color Emoji';
 }
 
 .clip-left-shape {
@@ -31,7 +102,8 @@ body {
 }
 
 .spinner-base {
-  background: radial-gradient(farthest-side, currentColor 94%, #0000) top/var(--spinner-width) var(--spinner-width) no-repeat,
+  background: radial-gradient(farthest-side, currentColor 94%, #0000) top/var(--spinner-width)
+      var(--spinner-width) no-repeat,
     conic-gradient(#0000 30%, currentColor);
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - var(--spinner-width)), #000 0);
   mask: radial-gradient(farthest-side, #0000 calc(100% - var(--spinner-width)), #000 0);

@@ -45,7 +45,7 @@ export function Pagination({ props }: PaginationProps) {
 
   const commonClasses = 'flex items-center justify-center h-8 min-w-8 text-sm';
   const linkCommonClasses =
-    'text-gray-600 hover:bg-orange-500/20 hover:border-orange-500/40 border border-slate-300 rounded-md';
+    'text-muted hover:bg-primary/20 hover:border-primary border-standard-darker rounded-md';
 
   return (
     <nav className='flex items-center gap-1 overflow-hidden'>
@@ -68,10 +68,10 @@ export function Pagination({ props }: PaginationProps) {
             href={`?page=${page}`}
             className={clsx(
               page === props.current
-                ? 'bg-orange-600 border-0 text-white cursor-default'
+                ? 'bg-primary border-0 text-inverse cursor-default'
                 : linkCommonClasses,
               commonClasses,
-              'border border-slate-300 rounded-md font-medium',
+              'rounded-md font-medium',
             )}
           >
             {page}

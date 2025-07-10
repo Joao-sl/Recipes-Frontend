@@ -69,11 +69,11 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
       <div className='flex flex-col px-6 mt-4 sm:items-center sm:justify-between sm:flex-row'>
         <div>
           <h1 className='text-3xl font-bold text-gray-700 mb-1 sm:text-left'>Minhas Receitas</h1>
-          <p className='text-stone-500 sm:text-left'>Gerencie suas receitas cadastradas</p>
+          <p className='text-muted sm:text-left'>Gerencie suas receitas cadastradas</p>
         </div>
 
         <div>
-          <p className='text-sm text-stone-500'>{recipesRawData.count} receitas</p>
+          <p className='text-sm text-muted'>{recipesRawData.count} receitas</p>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
         <p className='pl-6 text-slate-600'>Você ainda não enviou nenhuma receita.</p>
       ) : (
         <div>
-          <p className='text-stone-500 text-xs mb-2 sm:pl-6 text-center sm:text-left'>
+          <p className='text-muted text-xs mb-2 sm:pl-6 text-center sm:text-left'>
             Você só poderá editar receitas que ainda não foram aprovadas.
           </p>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 px-6'>

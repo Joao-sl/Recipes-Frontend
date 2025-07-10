@@ -13,7 +13,7 @@ export function ErrorContainer({ errorNumber, message, link }: ErrorContainerPro
   return (
     <div className={'flex flex-col items-center justify-center gap-2 h-screen bg-slate-100'}>
       <div className='flex items-center'>
-        <h1 className='border-r-1 border-r-slate-600  mr-4 px-6 text-2xl/[49px] font-bold'>
+        <h1 className='border-r-1 border-r-slate-600 mr-4 px-6 text-2xl/[49px] font-bold'>
           {errorNumber}
         </h1>
         <h2 className='text-sm font-normal/[49px] m-0'>{message}</h2>
@@ -21,7 +21,7 @@ export function ErrorContainer({ errorNumber, message, link }: ErrorContainerPro
 
       {link?.props && (
         <div className='flex gap-6 text-sm'>
-          <Link {...link?.props} className='text-orange-700 hover:underline'>
+          <Link {...link?.props} className='text-primary hover:underline'>
             {link?.linkMessage}
           </Link>
         </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import { formTitleClasses, formWrapperClasses } from '@/utils/styles/privatePageStyles';
 import { Button } from '../Button';
 import { InputText } from '../InputText';
 import { EyeClosedIcon, EyeIcon, XIcon } from 'lucide-react';
@@ -99,8 +98,8 @@ export function AccountSecurityForm({ email }: { email?: string }) {
   const showPasswordClasses = 'cursor-pointer absolute right-2 top-9.5 text-slate-500/80';
   return (
     <div className='max-w-2xl mx-auto'>
-      <div className={formWrapperClasses}>
-        <h1 className={clsx(formTitleClasses, 'flex items-center gap-2 text-lg sm:text-2xl')}>
+      <div className='form-wrapper'>
+        <h1 className={clsx('form-title', 'flex items-center gap-2 text-lg sm:text-2xl')}>
           Configurações de Segurança
         </h1>
         <h3 className='-mt-5 mb-6 text-sm text-slate-500'>
@@ -124,7 +123,7 @@ export function AccountSecurityForm({ email }: { email?: string }) {
           <div className='relative'>
             <InputText
               type={showPassword.current_pass ? 'text' : 'password'}
-              labelText='Senha'
+              labelText='Senha Atual'
               name='password'
               id='password'
               placeholder='Digite sua senha atual'
@@ -186,7 +185,7 @@ export function AccountSecurityForm({ email }: { email?: string }) {
           <div className='relative'>
             <InputText
               type={showPassword.confirm_pass ? 'text' : 'password'}
-              labelText='Nova Senha'
+              labelText='Confirme a Nova Senha'
               id='confirm-new-password'
               name='confirm_new_password'
               placeholder='Confirme sua nova senha'
@@ -217,12 +216,7 @@ export function AccountSecurityForm({ email }: { email?: string }) {
             </button>
           </div>
 
-          <Button
-            type='submit'
-            variant='defaultDarker'
-            disabled={isPending}
-            aria-disabled={isPending}
-          >
+          <Button type='submit' disabled={isPending} aria-disabled={isPending}>
             {isPending && <LoadingSpinner color='orange' />}
             {isPending ? 'Enviando' : 'Enviar'}
           </Button>

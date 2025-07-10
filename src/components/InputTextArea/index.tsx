@@ -1,4 +1,3 @@
-import { inputCommonClasses, inputWrapper, labelClasses } from '@/utils/styles/inputStyles';
 import clsx from 'clsx';
 
 type InputTextAreaProps = {
@@ -8,14 +7,14 @@ type InputTextAreaProps = {
 
 export function InputTextArea({ id, labelText, ...props }: InputTextAreaProps) {
   return (
-    <div className={inputWrapper}>
+    <div className='input-wrapper'>
       {labelText && (
-        <label className={labelClasses} htmlFor={id}>
+        <label className='label-standard' htmlFor={id}>
           {labelText}
         </label>
       )}
 
-      <textarea id={id} {...props} className={clsx(inputCommonClasses, 'min-h-27')}></textarea>
+      <textarea id={id} {...props} className={clsx('input-standard', 'min-h-27')}></textarea>
     </div>
   );
 }

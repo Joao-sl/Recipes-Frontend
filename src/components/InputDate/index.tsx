@@ -1,4 +1,3 @@
-import { inputCommonClasses, labelClasses } from '@/utils/styles/inputStyles';
 import clsx from 'clsx';
 
 type InputDateProps = {
@@ -11,12 +10,12 @@ export function InputDate({ id, labelText, type = 'date', ...props }: InputDateP
   return (
     <div className='flex flex-col'>
       {labelText && (
-        <label className={labelClasses} htmlFor={id}>
+        <label className='label-standard' htmlFor={id}>
           {labelText}
         </label>
       )}
 
-      <input type={type} id={id} {...props} className={clsx('flex', inputCommonClasses)} />
+      <input type={type} id={id} {...props} className={clsx('flex', 'input-standard')} />
     </div>
   );
 }

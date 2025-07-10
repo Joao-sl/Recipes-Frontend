@@ -43,12 +43,12 @@ export function ProfileMenu() {
     setIsOpen(false);
   }, [path]);
 
-  const activeClasses = 'bg-orange-600 text-white hover:bg-orange-600 cursor-default';
+  const activeClasses = 'bg-primary text-white hover:bg-primary cursor-default';
   const linkClasses = clsx(
-    'flex items-center gap-3 text-sm text-gray-800 px-3 py-2 rounded-lg',
+    'flex items-center gap-3 text-sm text-base px-3 py-2 rounded-lg',
     'hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px]',
   );
-  const subTitleMenuClasses = 'text-sm text-gray-500 font-medium mb-3';
+  const subTitleMenuClasses = 'text-sm text-muted font-medium mb-3';
 
   const profileLinks = [
     { href: '/profile', labelIcon: UserRoundIcon, label: 'Perfil' },
@@ -85,10 +85,10 @@ export function ProfileMenu() {
 
       <nav
         className={clsx(
-          'flex w-64 p-6 h-screen border-r border-gray-200 z-50 transition duration-500',
+          'flex w-64 p-6 h-screen border-r border-root z-50 transition duration-500',
           'md:fixed md:translate-x-0 md:opacity-100',
           isOpen
-            ? 'translate-x-0 absolute top-0 opacity-100 bg-gray-50 h-screen min-h-[500px] rounded-lg'
+            ? 'translate-x-0 fixed top-0 opacity-100 bg-divider h-screen min-h-[500px] rounded-lg'
             : '-translate-x-[107%] absolute top-0 opacity-0',
         )}
         role='navigation'
@@ -96,13 +96,13 @@ export function ProfileMenu() {
       >
         <div className={clsx('w-screen relative')}>
           <button
-            className='md:hidden absolute left-[91%] top-[-7px] cursor-pointer transition hover:text-red-700'
+            className='md:hidden absolute left-[97%] top-[-12px] cursor-pointer transition hover:text-red-600'
             onClick={() => setIsOpen(state => !state)}
           >
             <XIcon size={20} />
           </button>
 
-          <h1 className='text-xl text-gray-800 font-bold mb-8'>{SITE_NAME.toUpperCase()}</h1>
+          <h1 className='text-xl text-muted font-bold mb-8'>{SITE_NAME.toUpperCase()}</h1>
           <h2 className={subTitleMenuClasses}>Configurações</h2>
           <div className='space-y-1'>
             {profileLinks.map(({ href, labelIcon: Icon, label }) => {

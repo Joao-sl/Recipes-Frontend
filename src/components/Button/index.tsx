@@ -16,11 +16,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   const common =
-    'flex items-center justify-center text-white font-medium cursor-pointer rounded-md transition disabled:bg-slate-200 disabled:text-slate-700 disabled:cursor-not-allowed';
+    'flex items-center justify-center text-inverse font-medium cursor-pointer rounded-md transition disabled:bg-disabled disabled:text-base disabled:cursor-default';
 
   const buttonClasses = {
-    default: clsx('bg-orange-500', 'hover:bg-orange-500/80', common),
-    defaultDarker: clsx('bg-orange-600', 'hover:bg-orange-500', common),
+    default: clsx('bg-primary', 'hover:bg-primary/80', common),
+    defaultDarker: clsx('bg-secondary', 'hover:bg-secondary/80', common),
     careful: clsx('bg-red-500', 'hover:bg-red-700', common),
     ghost: clsx('bg-slate-400', 'hover:bg-slate-500', common),
   };
