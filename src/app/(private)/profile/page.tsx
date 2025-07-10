@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import { getAccessToken, getRefreshToken } from '@/lib/auth/manage-user-session';
 import { PUBLIC_SITE_URL } from '@/lib/config';
 import { redirect } from 'next/navigation';
-import { privatePagesClasses } from '@/utils/styles/privatePageStyles';
 
 export const metadata: Metadata = {
   title: 'Perfil',
@@ -33,7 +32,7 @@ export default async function ProfilePage() {
   if (!response.ok) {
     console.log(response);
     return (
-      <div className={privatePagesClasses}>
+      <div className='private-page-wrapper'>
         <ProfileForm />
       </div>
     );
@@ -41,7 +40,7 @@ export default async function ProfilePage() {
 
   const profileData = await response.json();
   return (
-    <div className={privatePagesClasses}>
+    <div className='private-page-wrapper'>
       <ProfileForm initialData={profileData.profile} />
     </div>
   );

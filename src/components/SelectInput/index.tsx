@@ -1,4 +1,3 @@
-import { inputWrapper, labelClasses, selectInputClasses } from '@/utils/styles/inputStyles';
 import Select from 'react-select';
 import type { Props } from 'react-select';
 import { useId } from 'react';
@@ -11,9 +10,9 @@ type SelectInputProps = {
 
 export function SelectInput({ labelText, id, ...props }: SelectInputProps) {
   return (
-    <div className={inputWrapper}>
-      {labelClasses && (
-        <label className={labelClasses} htmlFor={id}>
+    <div className='input-wrapper'>
+      {labelText && (
+        <label className='label-standard' htmlFor={id}>
           {labelText}
         </label>
       )}
@@ -25,20 +24,17 @@ export function SelectInput({ labelText, id, ...props }: SelectInputProps) {
         classNames={{
           control: state =>
             clsx(
-              selectInputClasses,
-              state.isFocused ? 'border-orange-400' : 'border-slate-200 hover:border-slate-300',
-              state.isDisabled ? 'bg-slate-200' : '',
+              'select-input-standard',
+              state.isFocused ? 'border-primary' : 'border-root hover:border-slate-300',
+              state.isDisabled ? 'bg-disabled' : '',
             ),
           placeholder: () => 'text-gray-500',
           indicatorsContainer: () => clsx('[&_svg]:hover:text-slate-300 text-slate-200'),
           indicatorSeparator: () => clsx('bg-slate-200 mx-2'),
-          menu: () => clsx('mt-1 overflow-y-hidden  border bg-white border-slate-200 rounded-md'),
-          menuList: () => 'max-h-60  text-sm text-gray-800',
+          menu: () => clsx('mt-1 overflow-y-hidden border-standard bg-white rounded-md'),
+          menuList: () => 'max-h-60  text-sm text-base',
           option: state =>
-            clsx(
-              'py-2 px-3',
-              state.isSelected ? 'bg-orange-600 text-white' : 'hover:bg-orange-200',
-            ),
+            clsx('py-2 px-3', state.isSelected ? 'bg-primary text-inverse' : 'hover:bg-primary/20'),
           multiValue: () =>
             clsx(
               'flex gap-1 items-center justify-center pl-2 bg-slate-200 overflow-hidden rounded-xs',

@@ -16,11 +16,6 @@ import { fileSizeValidator } from '@/utils/fileSizeValidator';
 import { isEqual } from 'lodash';
 import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
 import { InputImageWithPreview } from '../InputImageWithPreview';
-import {
-  contentMaxSize,
-  formTitleClasses,
-  formWrapperClasses,
-} from '@/utils/styles/privatePageStyles';
 
 type ProfileData = {
   initialData?: {
@@ -148,9 +143,9 @@ export function ProfileForm({ initialData }: ProfileData) {
   }
 
   return (
-    <div className={contentMaxSize}>
-      <div className={formWrapperClasses}>
-        <h1 className={formTitleClasses}>Avatar</h1>
+    <div className='content-max-size'>
+      <div className='form-wrapper'>
+        <h1 className='form-title'>Avatar</h1>
 
         <form className='flex flex-col gap-7 sm:flex-row sm:gap-0 ' onSubmit={handleAvatarSubmit}>
           <InputImageWithPreview
@@ -164,7 +159,6 @@ export function ProfileForm({ initialData }: ProfileData) {
 
           <div className='flex sm:justify-end sm:items-baseline-last sm:-ml-2'>
             <Button
-              variant='defaultDarker'
               type='submit'
               disabled={isPendingAvatar}
               className='w-full sm:w-auto mt-2 sm:mt-0'
@@ -176,8 +170,8 @@ export function ProfileForm({ initialData }: ProfileData) {
         </form>
       </div>
 
-      <div className={formWrapperClasses}>
-        <h1 className={formTitleClasses}>Editar Perfil</h1>
+      <div className='form-wrapper'>
+        <h1 className='form-title'>Editar Perfil</h1>
 
         <form onSubmit={handleProfileSubmit} className='flex flex-col gap-6'>
           <div className='flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:gap-7'>
@@ -269,7 +263,7 @@ export function ProfileForm({ initialData }: ProfileData) {
             defaultValue={profileData?.birth_date}
           />
 
-          <Button variant='defaultDarker' type='submit' disabled={isPending}>
+          <Button type='submit' disabled={isPending}>
             {!isPending && 'Salvar'}
             {isPending && <LoadingSpinner />}
           </Button>

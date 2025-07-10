@@ -3,7 +3,6 @@ import { LoadingSpinner } from '@/components/Loading';
 import { NewRecipeForm } from '@/components/NewRecipeForm';
 import { getAccessToken, getRefreshToken } from '@/lib/auth/manage-user-session';
 import { PUBLIC_SITE_URL } from '@/lib/config';
-import { privatePagesClasses } from '@/utils/styles/privatePageStyles';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -37,7 +36,7 @@ export default async function AddNewRecipe() {
     console.log(response);
     return (
       <Suspense fallback={<LoadingSpinner />}>
-        <div className={privatePagesClasses}>
+        <div className='private-page-wrapper'>
           <NewRecipeForm />
         </div>
       </Suspense>
@@ -48,7 +47,7 @@ export default async function AddNewRecipe() {
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <div className={privatePagesClasses}>
+      <div className='private-page-wrapper'>
         <NewRecipeForm categoriesData={categoriesData} />
       </div>
     </Suspense>

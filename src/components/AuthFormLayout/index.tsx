@@ -27,7 +27,7 @@ export function AuthFormLayout({
   loginPage = false,
   onSubmit,
 }: AuthFormProps) {
-  const linkClasses = 'font-bold transition text-orange-500 hover:underline';
+  const linkClasses = 'font-bold transition text-primary hover:underline';
 
   return (
     <div
@@ -52,7 +52,7 @@ export function AuthFormLayout({
               fill
               sizes='104px'
               priority
-              className='object-cover object-center rounded-full ring-3 ring-orange-500'
+              className='object-cover object-center rounded-full ring-3 ring-primary'
               aria-hidden='true'
             />
           </div>
@@ -64,7 +64,7 @@ export function AuthFormLayout({
               'max-w-[350px] lg:min-w-[260px] lg:min-h-[340px] lg:w-[350px]',
             )}
           >
-            <h2 className='text-center text-4xl font-extrabold text-slate-700'>{title}</h2>
+            <h2 className='text-center text-4xl font-bold text-base'>{title}</h2>
             <p className=' text-center'>{description}</p>
 
             {children}

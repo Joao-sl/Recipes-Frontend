@@ -12,8 +12,8 @@ const spinnerSizeMap = {
 };
 
 const spinnerColorMap = {
-  white: 'text-white',
-  orange: 'text-orange-500',
+  white: 'text-inverse',
+  orange: 'text-primary',
   gray: 'text-slate-500',
 };
 

@@ -1,18 +1,12 @@
 'use client';
 
+import clsx from 'clsx';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/Button';
 import { InputText } from '@/components/InputText';
-import React, { useRef, useState } from 'react';
 import { InputTextArea } from '../InputTextArea';
 import { InputImageWithPreview } from '../InputImageWithPreview';
-import {
-  contentMaxSize,
-  formTitleClasses,
-  formWrapperClasses,
-} from '@/utils/styles/privatePageStyles';
 import { SelectInput } from '../SelectInput';
-import { labelClasses } from '@/utils/styles/inputStyles';
-import clsx from 'clsx';
 import { PlusIcon } from 'lucide-react';
 import { handleRecipePayload } from '@/utils/handleRecipeData';
 import { RecipeSchema } from '@/validations/recipe.schema';
@@ -125,9 +119,9 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
 
   const errorClasses = 'text-red-500 text-sm';
   return (
-    <div className={contentMaxSize}>
-      <div className={formWrapperClasses}>
-        <h1 className={formTitleClasses}>Nova Receita</h1>
+    <div className='content-max-size'>
+      <div className='form-wrapper'>
+        <h1 className='form-title'>Nova Receita</h1>
 
         <form key={formKey} className='flex flex-col gap-6' onSubmit={handleSubmit}>
           {badRequestErrors && (
@@ -143,7 +137,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           )}
 
           <div className='flex flex-col w-auto'>
-            <label className={clsx(labelClasses, 'mb-3')} htmlFor='cover'>
+            <label className={clsx('label-standard', 'mb-3')} htmlFor='cover'>
               Capa da receita (Opcional)
             </label>
 
@@ -192,7 +186,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='flex flex-col'>
-            <h3 className={labelClasses}>Tempo de preparo</h3>
+            <h3 className='label-standard'>Tempo de preparo</h3>
             <div className='flex gap-2'>
               <InputText
                 type='number'
@@ -233,7 +227,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='flex flex-col'>
-            <h3 className={labelClasses}>Rendimento</h3>
+            <h3 className='label-standard'>Rendimento</h3>
             <div className='flex gap-2'>
               <InputText
                 type='number'
@@ -313,7 +307,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='space-y-4'>
-            <h3 className='font-medium'>Ingredientes</h3>
+            <h3 className='font-medium text-base'>Ingredientes</h3>
 
             <div>
               {errors?.fieldErrors?.ingredients && (
@@ -367,7 +361,6 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
 
             <Button
               size='sm'
-              variant='defaultDarker'
               type='button'
               onClick={addNewIngredient}
               title='Adicionar um novo ingrediente'
@@ -380,7 +373,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='space-y-4'>
-            <h3 className='font-medium'>Modo de preparo</h3>
+            <h3 className='font-medium text-base'>Modo de preparo</h3>
 
             <div>
               {errors?.fieldErrors?.preparation_steps && (
@@ -423,7 +416,6 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
 
             <Button
               size='sm'
-              variant='defaultDarker'
               type='button'
               onClick={addNewStep}
               title='Adicionar um novo passo'
@@ -436,14 +428,14 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='flex flex-col mt-4 w-full'>
-            <div className='flex items-center gap-1 font-medium text-sm mb-1'>
+            <div className='flex items-center gap-1 text-sm mb-1'>
               <input type='checkbox' name='terms' id='terms' />
-              <p className='text-slate-800'>Eu li e concordo com os</p>
-              <a className='text-orange-600 hover:underline' href='terms' target='_blank'>
+              <p className='text-base'>Eu li e concordo com os</p>
+              <a className='text-primary font-medium hover:underline' href='terms' target='_blank'>
                 termos de uso
               </a>
             </div>
-            <Button type='submit' variant='defaultDarker' disabled={isPending}>
+            <Button type='submit' disabled={isPending}>
               {isPending ? <LoadingSpinner color='orange' /> : 'Enviar'}
             </Button>
           </div>
