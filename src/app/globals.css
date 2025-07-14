@@ -15,7 +15,7 @@
   --color-disabled: theme(colors.gray.300);
 
   /* TEXTS */
-  --color-base: theme(colors.gray.800);
+  --color-base-color: theme(colors.gray.800);
   --color-muted: theme(colors.gray.500);
   --color-inverse: theme(colors.white);
 
@@ -67,10 +67,16 @@
     @apply bg-divider border border-root p-6 mb-10 shadow-lg rounded-lg;
   }
   .form-title {
-    @apply text-2xl text-base font-semibold mb-6;
+    @apply text-2xl text-base-color font-semibold mb-6;
   }
   .content-max-size {
-    @apply max-w-4xl mx-auto;
+    @apply max-w-3xl mx-auto;
+  }
+  .private-page-title {
+    @apply text-2xl sm:text-3xl text-gray-700 font-bold;
+  }
+  .private-page-subtitle {
+    @apply text-sm sm:text-base text-muted;
   }
 }
 

@@ -32,7 +32,7 @@ export function SelectInput({ labelText, id, ...props }: SelectInputProps) {
           indicatorsContainer: () => clsx('[&_svg]:hover:text-slate-300 text-slate-200'),
           indicatorSeparator: () => clsx('bg-slate-200 mx-2'),
           menu: () => clsx('mt-1 overflow-y-hidden border-standard bg-white rounded-md'),
-          menuList: () => 'max-h-60  text-sm text-base',
+          menuList: () => 'max-h-60 text-sm text-base-color',
           option: state =>
             clsx('py-2 px-3', state.isSelected ? 'bg-primary text-inverse' : 'hover:bg-primary/20'),
           multiValue: () =>

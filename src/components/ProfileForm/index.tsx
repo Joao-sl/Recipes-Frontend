@@ -144,10 +144,17 @@ export function ProfileForm({ initialData }: ProfileData) {
 
   return (
     <div className='content-max-size'>
+      <div className='mb-6 space-y-2'>
+        <h1 className='private-page-title'>Configurações do Perfil</h1>
+        <p className='private-page-subtitle'>
+          Gerencie suas informações pessoais e suas preferencias
+        </p>
+      </div>
+
       <div className='form-wrapper'>
         <h1 className='form-title'>Avatar</h1>
 
-        <form className='flex flex-col gap-7 sm:flex-row sm:gap-0 ' onSubmit={handleAvatarSubmit}>
+        <form className='flex flex-col gap-7 sm:flex-row sm:gap-0' onSubmit={handleAvatarSubmit}>
           <InputImageWithPreview
             id='avatar'
             labelText='Escolha seu avatar'
