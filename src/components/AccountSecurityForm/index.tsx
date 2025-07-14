@@ -1,6 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
 import { Button } from '../Button';
 import { InputText } from '../InputText';
 import { EyeClosedIcon, EyeIcon, XIcon } from 'lucide-react';
@@ -98,14 +97,14 @@ export function AccountSecurityForm({ email }: { email?: string }) {
   const showPasswordClasses = 'cursor-pointer absolute right-2 top-9.5 text-slate-500/80';
   return (
     <div className='max-w-2xl mx-auto'>
-      <div className='form-wrapper'>
-        <h1 className={clsx('form-title', 'flex items-center gap-2 text-lg sm:text-2xl')}>
-          Configurações de Segurança
-        </h1>
-        <h3 className='-mt-5 mb-6 text-sm text-slate-500'>
-          Mantenha seu email e senha atualizados para manter sua conta protegida
-        </h3>
+      <div className='mb-6 space-y-2'>
+        <h1 className='private-page-title'>Configurações de Segurança</h1>
+        <p className='private-page-subtitle'>
+          Mantenha seu e-mail e senha atualizados para manter sua conta protegida.
+        </p>
+      </div>
 
+      <div className='form-wrapper'>
         <form className='flex flex-col space-y-6' ref={formRef} onSubmit={handleSubmit}>
           <InputText
             type='email'

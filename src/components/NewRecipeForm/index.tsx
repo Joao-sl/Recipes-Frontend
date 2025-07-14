@@ -120,8 +120,15 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
   const errorClasses = 'text-red-500 text-sm';
   return (
     <div className='content-max-size'>
+      <div className='mb-6 space-y-2'>
+        <h1 className='private-page-title'>Enviar nova receita</h1>
+        <p className='private-page-subtitle'>
+          Antes de ser postada, sua receita será avaliada por um administrador.
+        </p>
+      </div>
+
       <div className='form-wrapper'>
-        <h1 className='form-title'>Nova Receita</h1>
+        <h1 className='form-title'>Receita</h1>
 
         <form key={formKey} className='flex flex-col gap-6' onSubmit={handleSubmit}>
           {badRequestErrors && (
@@ -307,7 +314,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='space-y-4'>
-            <h3 className='font-medium text-base'>Ingredientes</h3>
+            <h3 className='font-medium text-base-color'>Ingredientes</h3>
 
             <div>
               {errors?.fieldErrors?.ingredients && (
@@ -373,7 +380,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           </div>
 
           <div className='space-y-4'>
-            <h3 className='font-medium text-base'>Modo de preparo</h3>
+            <h3 className='font-medium text-base-color'>Modo de preparo</h3>
 
             <div>
               {errors?.fieldErrors?.preparation_steps && (
@@ -430,7 +437,7 @@ export function NewRecipeForm({ categoriesData }: categoriesType) {
           <div className='flex flex-col mt-4 w-full'>
             <div className='flex items-center gap-1 text-sm mb-1'>
               <input type='checkbox' name='terms' id='terms' />
-              <p className='text-base'>Eu li e concordo com os</p>
+              <p className='text-base-color'>Confirmo que li e concordo com os</p>
               <a className='text-primary font-medium hover:underline' href='terms' target='_blank'>
                 termos de uso
               </a>

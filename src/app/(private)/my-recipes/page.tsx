@@ -67,9 +67,12 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
   return (
     <div className='space-y-5 mb-8'>
       <div className='flex flex-col px-6 mt-4 sm:items-center sm:justify-between sm:flex-row'>
-        <div>
-          <h1 className='text-3xl font-bold text-gray-700 mb-1 sm:text-left'>Minhas Receitas</h1>
-          <p className='text-muted sm:text-left'>Gerencie suas receitas cadastradas</p>
+        <div className='mb-2 space-y-2'>
+          <h1 className='private-page-title'>Minhas Receitas</h1>
+          <p className='private-page-subtitle'>
+            Gerencie suas receitas cadastradas, você só poderá editar receitas que ainda não foram
+            aprovadas.
+          </p>
         </div>
 
         <div>
@@ -77,15 +80,10 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
         </div>
       </div>
 
-      <hr className='text-gray-200' />
-
       {recipesRawData.count == 0 ? (
         <p className='pl-6 text-slate-600'>Você ainda não enviou nenhuma receita.</p>
       ) : (
         <div>
-          <p className='text-muted text-xs mb-2 sm:pl-6 text-center sm:text-left'>
-            Você só poderá editar receitas que ainda não foram aprovadas.
-          </p>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 px-6'>
             {recipes.map((element, index) => (
               <div key={index} className='transition hover:scale-[102%_102%_102%]'>
