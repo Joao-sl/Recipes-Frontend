@@ -1,7 +1,7 @@
 'use client';
 
 import { UserRecipeCardData } from '@/lib/recipes/models';
-import { brazilianDateFormat } from '@/utils/formatDate';
+import { brazilianDateFormat } from '@/utils/format-date';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
