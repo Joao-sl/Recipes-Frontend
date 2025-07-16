@@ -1,3 +1,15 @@
+interface RecipePayload {
+  title: string | FormDataEntryValue;
+  description: string | FormDataEntryValue;
+  preparation_time: string | FormDataEntryValue;
+  servings: string | FormDataEntryValue;
+  tips: string | FormDataEntryValue;
+  categories: string[] | FormDataEntryValue[];
+  ingredients: { name: string | FormDataEntryValue; quantity: string | FormDataEntryValue }[];
+  preparation_steps: { step: string | FormDataEntryValue }[];
+  cover?: File | string | null;
+}
+
 function formatPreparationTime(
   hours: FormDataEntryValue | null,
   minutes: FormDataEntryValue | null,
@@ -40,9 +52,11 @@ export function handleRecipePayload(formData: FormData) {
   const categories = formData.getAll('categories') || [];
   const ingredients = formatIngredients(formData.getAll('name'), formData.getAll('quantity'));
   const preparation_steps = formatSteps(formData.getAll('step'));
-  const cover = formData.get('cover') || null;
 
-  const data = {
+  const coverFile = formData.get('cover') as File;
+  const cover = coverFile.size < 1 ? null : coverFile;
+
+  const data: RecipePayload = {
     title,
     description,
     preparation_time,
@@ -51,7 +65,11 @@ export function handleRecipePayload(formData: FormData) {
     categories,
     ingredients,
     preparation_steps,
-    cover,
   };
+
+  if (cover) {
+    data.cover = cover;
+  }
+
   return data;
 }

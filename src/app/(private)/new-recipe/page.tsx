@@ -32,18 +32,7 @@ export default async function AddNewRecipe() {
     redirect('/login?next=%2Fprofile');
   }
 
-  if (!response.ok) {
-    console.log(response);
-    return (
-      <Suspense fallback={<LoadingSpinner />}>
-        <div className='private-page-wrapper'>
-          <NewRecipeForm />
-        </div>
-      </Suspense>
-    );
-  }
-
-  const categoriesData = await response.json();
+  const categoriesData = response.ok ? await response.json() : [];
 
   return (
     <Suspense fallback={<LoadingSpinner />}>

@@ -1,3 +1,5 @@
+'use client';
+
 import { fileSizeValidator } from '@/utils/fileSizeValidator';
 import clsx from 'clsx';
 import { UploadIcon } from 'lucide-react';
