@@ -2,10 +2,10 @@ export interface RawRecipe {
   title: string;
   description: string;
   preparation_time: string;
-  ingredients: { name: string; quantity: string }[];
-  preparation_steps: { step: string }[];
+  ingredients: { name: string; quantity: string }[] | [];
+  preparation_steps: { step: string }[] | [];
   servings: string;
-  categories: { id: number; category_name: string; slug: string }[];
+  categories: { id: number; category_name: string; slug: string }[] | [];
   slug: string;
   author: number;
   tips: string;
@@ -15,6 +15,12 @@ export interface RawRecipe {
   created_at: string;
   updated_at: string;
   cover: string | null;
+}
+
+export interface Category {
+  id: number;
+  category_name: string;
+  slug: string;
 }
 
 export type UserRecipeCardData = Pick<

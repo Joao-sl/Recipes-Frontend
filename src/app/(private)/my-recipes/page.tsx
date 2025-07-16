@@ -1,3 +1,4 @@
+import { FetchError } from '@/components/FetchError';
 import { Pagination } from '@/components/Pagination';
 import { RecipeCard } from '@/components/RecipeCard';
 import { getRefreshToken, getAccessToken } from '@/lib/auth/manage-user-session';
@@ -31,7 +32,7 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
     },
     next: {
       revalidate: 600,
-      tags: ['recipes-updated'],
+      tags: ['recipe-updated'],
     },
   });
 
@@ -41,17 +42,7 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
 
   if (!response.ok) {
     console.log(response);
-    return (
-      <div className='flex h-screen w-full items-center justify-center'>
-        <p className='border-r-1 border-r-slate-600  mr-4 px-6 text-2xl/[49px] font-bold'>
-          {response.status}
-        </p>
-        <p className='text-sm font-normal/[49px] m-0 max-w-97'>
-          Desculpe não conseguimos carregar suas receitas por um erro interno, por favor tente
-          novamente mais tarde
-        </p>
-      </div>
-    );
+    return <FetchError />;
   }
   const data = await response.json();
 
