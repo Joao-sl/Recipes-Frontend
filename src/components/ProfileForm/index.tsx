@@ -9,12 +9,12 @@ import { InputTextArea } from '../InputTextArea';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '../Loading';
-import { UserProfileSchema } from '@/validations/user.schema';
-import { FormErrors } from '@/validations/formErrorsType';
+import { UserProfileSchema } from '@/validations/user-schema';
+import { FormErrors } from '@/validations/form-errors-type';
 import { z } from 'zod/v4';
-import { fileSizeValidator } from '@/utils/fileSizeValidator';
+import { fileSizeValidator } from '@/utils/file-size-validator';
 import { isEqual } from 'lodash';
-import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
+import { fetchErrorHandler } from '@/utils/fetch-errors-handler';
 import { InputImageWithPreview } from '../InputImageWithPreview';
 
 type ProfileData = {

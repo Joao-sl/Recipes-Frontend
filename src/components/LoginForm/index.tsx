@@ -7,7 +7,7 @@ import { Button } from '../Button';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { LoginUserSchema } from '@/validations/user.schema';
+import { LoginUserSchema } from '@/validations/user-schema';
 import { LoadingSpinner } from '../Loading';
 
 export function LoginForm() {

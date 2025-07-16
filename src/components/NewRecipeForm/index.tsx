@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { handleRecipePayload } from '@/utils/handleRecipeData';
-import { RecipeSchema } from '@/validations/recipe.schema';
+import { handleRecipePayload } from '@/utils/handle-recipe-data';
+import { RecipeSchema } from '@/validations/recipe-schema';
 import { z } from 'zod/v4';
-import { FormErrors } from '@/validations/formErrorsType';
+import { FormErrors } from '@/validations/form-errors-type';
 import { toast } from 'react-toastify';
-import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
+import { fetchErrorHandler } from '@/utils/fetch-errors-handler';
 import { Category } from '@/lib/recipes/models';
 import { RecipeFormLayout } from '../RecipesFormLayout';
 import { useRouter } from 'next/navigation';
