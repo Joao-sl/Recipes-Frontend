@@ -1,4 +1,4 @@
-import { RegisterUserSchema } from '@/validations/user.schema';
+import { RegisterUserSchema } from '@/validations/user-schema';
 import { NextResponse } from 'next/server';
 import { API_DOMAIN } from '@/lib/config';
 import { z } from 'zod/v4';

@@ -3,13 +3,13 @@
 import { Category, RawRecipe } from '@/lib/recipes/models';
 import { RecipeFormLayout } from '../RecipesFormLayout';
 import { useState } from 'react';
-import { handleRecipePayload } from '@/utils/handleRecipeData';
+import { handleRecipePayload } from '@/utils/handle-recipe-data';
 import { toast } from 'react-toastify';
-import { RecipeSchema } from '@/validations/recipe.schema';
+import { RecipeSchema } from '@/validations/recipe-schema';
 import { z } from 'zod/v4';
-import { FormErrors } from '@/validations/formErrorsType';
+import { FormErrors } from '@/validations/form-errors-type';
 import { useParams, useRouter } from 'next/navigation';
-import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
+import { fetchErrorHandler } from '@/utils/fetch-errors-handler';
 
 type EditRecipeFormProps = {
   initialData: RawRecipe;

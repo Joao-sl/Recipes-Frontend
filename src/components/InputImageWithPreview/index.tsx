@@ -1,6 +1,6 @@
 'use client';
 
-import { fileSizeValidator } from '@/utils/fileSizeValidator';
+import { fileSizeValidator } from '@/utils/file-size-validator';
 import clsx from 'clsx';
 import { UploadIcon } from 'lucide-react';
 import Image, { ImageProps } from 'next/image';

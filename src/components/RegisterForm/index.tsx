@@ -3,7 +3,7 @@
 import { KeyRoundIcon, MailIcon, User2Icon } from 'lucide-react';
 import { AuthFormLayout } from '../AuthFormLayout';
 import { InputText } from '../InputText';
-import { RegisterUserSchema } from '@/validations/user.schema';
+import { RegisterUserSchema } from '@/validations/user-schema';
 import { z } from 'zod/v4';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -11,8 +11,8 @@ import { Button } from '../Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '../Loading';
-import type { FormErrors } from '@/validations/formErrorsType';
-import { fetchErrorHandler } from '@/utils/fetchErrorsHandler';
+import type { FormErrors } from '@/validations/form-errors-type';
+import { fetchErrorHandler } from '@/utils/fetch-errors-handler';
 
 export function RegisterForm() {
   const router = useRouter();

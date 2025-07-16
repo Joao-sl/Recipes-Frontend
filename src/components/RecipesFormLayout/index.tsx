@@ -1,6 +1,6 @@
 'use client';
 
-import { FormErrors } from '@/validations/formErrorsType';
+import { FormErrors } from '@/validations/form-errors-type';
 import React, { useState, useRef } from 'react';
 import { InputImageWithPreview } from '../InputImageWithPreview';
 import { InputText } from '../InputText';
