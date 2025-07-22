@@ -53,7 +53,7 @@ export function EditRecipeForm({ initialData, categoriesData }: EditRecipeFormPr
       formData.append('data', data);
       if (cover) formData.append('cover', cover);
 
-      const response = await fetch(`/api/recipe/${path.slug}`, {
+      const response = await fetch(`/api/recipes/user-recipes/${path.slug}`, {
         method: 'PATCH',
         body: formData,
       });

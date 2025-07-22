@@ -13,7 +13,7 @@ export default async function UserRecipeEdit({ params }: PageProps) {
   const refresh = await getRefreshToken();
   const access = await getAccessToken();
   const resolvedParams = await params;
-  const recipeUrl = new URL(`/api/recipe/${resolvedParams.slug}`, PUBLIC_SITE_URL);
+  const recipeUrl = new URL(`/api/recipes/user-recipes/${resolvedParams.slug}`, PUBLIC_SITE_URL);
   const categoriesUrl = new URL('/api/categories', PUBLIC_SITE_URL);
 
   const recipeResponse = await fetch(recipeUrl, {
@@ -33,7 +33,7 @@ export default async function UserRecipeEdit({ params }: PageProps) {
   }
 
   if (!recipeResponse.ok) {
-    console.log(recipeResponse);
+    console.log('FROM: UserRecipeEdit Page', recipeResponse);
     return <FetchError />;
   }
   const RecipeData: RawRecipe = await recipeResponse.json();

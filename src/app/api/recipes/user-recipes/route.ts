@@ -6,6 +6,7 @@ import {
 } from '@/lib/auth/manage-user-session';
 import { API_DOMAIN } from '@/lib/config';
 import { NetworkError } from '@/utils/errors';
+import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -98,7 +99,7 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       return NextResponse.json(await response.json(), { status: response.status });
     }
-
+    revalidateTag('recipe-updated');
     return NextResponse.json(response);
   } catch {
     return NextResponse.json({ message: 'Server Connection Error' }, { status: 503 });

@@ -56,7 +56,7 @@
     @apply focus:border-primary/70 disabled:bg-disabled placeholder:text-sm hover:border-slate-300;
   }
   .select-input-standard {
-    @apply text-sm py-2 px-3 mt-2 border rounded-md outline-none;
+    @apply text-sm py-2 px-3 border rounded-md outline-none;
   }
 
   /* PRIVATE PAGES */
