@@ -1,0 +1,105 @@
+'use client';
+
+import { User } from '@/lib/auth/models';
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
+import { useRouter } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import { BookOpenIcon, PlusIcon, ShieldIcon, UserRoundIcon } from 'lucide-react';
+import { toast } from 'react-toastify';
+
+type MenuProps = {
+  user: User | null;
+};
+
+export function HomeMenuContainer({ user }: MenuProps) {
+  const router = useRouter();
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownBtnRef = useRef<HTMLButtonElement>(null);
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isDesktop = window.matchMedia('(min-width: 640px)');
+      setIsDesktop(isDesktop.matches);
+
+      const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+        setIsDesktop(e.matches);
+      };
+
+      isDesktop.addEventListener('change', handleMediaQueryChange);
+      return () => {
+        isDesktop.removeEventListener('change', handleMediaQueryChange);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        !(dropdownBtnRef.current && dropdownBtnRef.current.contains(e.target as Node)) &&
+        dropdownIsOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mouseup', handleClickOutside);
+    return () => document.removeEventListener('mouseup', handleClickOutside);
+  }, [dropdownIsOpen]);
+
+  async function handleLogout() {
+    try {
+      await fetch('api/logout');
+      router.refresh();
+    } catch {
+      toast.error('Desculpe não conseguimos encerrar sua sessão', {
+        ariaLabel: 'Desculpe não conseguimos encerrar sua sessão',
+      });
+    }
+  }
+
+  const dropdownLinks = [
+    { href: '/profile', labelIcon: UserRoundIcon, label: 'Perfil' },
+    { href: '/new-recipe', labelIcon: PlusIcon, label: 'Nova Receita' },
+    { href: '/my-recipes', labelIcon: BookOpenIcon, label: 'Minhas Receitas' },
+    { href: '/security', labelIcon: ShieldIcon, label: 'Segurança da Conta' },
+  ];
+
+  if (isDesktop === null) {
+    return <div className='flex justify-center items-center w-full h-[73px] shadow-xl/5'></div>;
+  }
+
+  return (
+    <>
+      {isDesktop ? (
+        <div>
+          <DesktopMenu
+            user={user}
+            onLogout={handleLogout}
+            dropdownLinks={dropdownLinks}
+            dropdownRef={dropdownRef}
+            dropdownBtnRef={dropdownBtnRef}
+            dropdownIsOpen={dropdownIsOpen}
+            setDropdownIsOpen={setDropdownIsOpen}
+          />
+        </div>
+      ) : (
+        <div>
+          <MobileMenu
+            user={user}
+            onLogout={handleLogout}
+            dropdownLinks={dropdownLinks}
+            dropdownRef={dropdownRef}
+            dropdownBtnRef={dropdownBtnRef}
+            dropdownIsOpen={dropdownIsOpen}
+            setDropdownIsOpen={setDropdownIsOpen}
+          />
+        </div>
+      )}
+    </>
+  );
+}

@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import './globals.css';
+import type { Metadata } from 'next';
 import { ToastifyContainer } from '@/components/ToastifyContainer';
 import { SITE_NAME } from '@/lib/config';
 
@@ -21,6 +21,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
       <body>
         {children}
         <ToastifyContainer />
+        <div id='portal-root'></div>
       </body>
     </html>
   );
