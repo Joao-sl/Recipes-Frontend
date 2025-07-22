@@ -22,7 +22,10 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
   const params = await searchParams;
   const page = parseInt(params.page || '1', 10);
   const pageSize = 10;
-  const url = new URL(`/api/recipe/?page=${page}&page_size=${pageSize}`, PUBLIC_SITE_URL);
+  const url = new URL(
+    `/api/recipes/user-recipes/?page=${page}&page_size=${pageSize}`,
+    PUBLIC_SITE_URL,
+  );
 
   const response = await fetch(url, {
     method: 'GET',
@@ -41,7 +44,7 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
   }
 
   if (!response.ok) {
-    console.log(response);
+    console.log('FROM: MyRecipesPage', response);
     return <FetchError />;
   }
   const data = await response.json();

@@ -47,7 +47,7 @@ export function NewRecipeForm({ categoriesData }: NewRecipeFormProps) {
       formData.append('data', data);
       if (cover) formData.append('cover', cover);
 
-      const response = await fetch('/api/recipe', {
+      const response = await fetch('/api/recipes/user-recipes/', {
         method: 'POST',
         body: formData,
       });
