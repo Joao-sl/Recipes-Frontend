@@ -50,6 +50,8 @@ export async function GET() {
 
 export async function PATCH(request: NextRequest) {
   const data = await request.json();
+  if (!data.profile.birth_date) delete data.profile.birth_date;
+
   const cookieStore = await cookies();
   const refresh = cookieStore.get(REFRESH_COOKIE)?.value || null;
 
