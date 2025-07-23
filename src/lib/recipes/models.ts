@@ -7,11 +7,17 @@ export interface RawRecipe {
   servings: string;
   categories: { id: number; category_name: string; slug: string }[] | [];
   slug: string;
-  author: number;
+  author: {
+    username: string;
+    profile?: { first_name: string | null; last_name: string | null } | null;
+  };
   tips: string;
   public: boolean;
   admin_approved: boolean;
-  approved_by: number | null;
+  approved_by: {
+    username: string;
+    profile?: { first_name: string | null; last_name: string | null } | null;
+  };
   created_at: string;
   updated_at: string;
   cover: string | null;
