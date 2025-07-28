@@ -1,6 +1,7 @@
 interface RecipePayload {
   title: string | FormDataEntryValue;
   description: string | FormDataEntryValue;
+  difficulty: string | FormDataEntryValue;
   preparation_time: string | FormDataEntryValue;
   servings: string | FormDataEntryValue;
   tips: string | FormDataEntryValue;
@@ -46,6 +47,7 @@ function formatSteps(steps: FormDataEntryValue[]) {
 export function handleRecipePayload(formData: FormData) {
   const title = formData.get('title') || '';
   const description = formData.get('description') || '';
+  const difficulty = formData.get('difficulty') || '';
   const preparation_time = formatPreparationTime(formData.get('hours'), formData.get('minutes'));
   const servings = `${formData.get('servings-qty')} ${formData.get('servings-unit')}`;
   const tips = formData.get('tips') || '';
@@ -59,6 +61,7 @@ export function handleRecipePayload(formData: FormData) {
   const data: RecipePayload = {
     title,
     description,
+    difficulty,
     preparation_time,
     servings,
     tips,
