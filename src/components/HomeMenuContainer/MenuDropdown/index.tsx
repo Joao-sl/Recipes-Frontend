@@ -95,14 +95,14 @@ export function MenuDropdown({
           </div>
           <div className='hidden sm:flex items-center gap-4 text-base-color text-sm font-medium'>
             <Link
-              className='flex justify-center items-center w-20 h-[38px] border border-root-darker rounded-full hover:bg-root-darker transition'
+              className='flex justify-center items-center w-20 h-[35px] border border-root-darker rounded-full hover:bg-root-darker transition'
               href={'/login'}
             >
               Entrar
             </Link>
 
             <Link
-              className='flex justify-center items-center w-40 h-[38px] text-inverse bg-primary rounded-full hover:bg-secondary transition'
+              className='flex justify-center items-center w-38 h-[35px] text-inverse bg-gradient-to-br from-primary to-primary/60 rounded-full hover:bg-secondary transition'
               href={'/register'}
             >
               Criar uma conta

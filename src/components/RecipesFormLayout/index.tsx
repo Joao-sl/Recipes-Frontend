@@ -9,7 +9,7 @@ import { InputTextArea } from '../InputTextArea';
 import { Button } from '../Button';
 import { PlusIcon } from 'lucide-react';
 import { LoadingSpinner } from '../Loading';
-import { Category, RawRecipe } from '@/lib/recipes/models';
+import { Category, Difficulty, RawRecipe } from '@/lib/recipes/models';
 
 type RecipesFormLayoutProps = {
   initialData?: RawRecipe;
@@ -36,6 +36,18 @@ export function RecipeFormLayout({
     { value: 'Copos', label: 'Copos' },
     { value: 'Fôrmas', label: 'Fôrmas' },
   ];
+
+  const difficultyOptions = [
+    { value: 'E', label: 'Fácil' },
+    { value: 'M', label: 'Médio' },
+    { value: 'H', label: 'Difícil' },
+  ];
+
+  const difficultyMap = {
+    Fácil: 'E',
+    Médio: 'M',
+    Difícil: 'H',
+  };
 
   const categoriesOptions = (categoriesData ?? []).map(({ id, category_name }) => ({
     value: id,
@@ -147,6 +159,35 @@ export function RecipeFormLayout({
           {errors?.fieldErrors?.description &&
             errors?.fieldErrors?.description.map((value, index) => (
               <p id='description-error' key={index} className={errorClasses}>
+                {value}
+              </p>
+            ))}
+        </div>
+
+        <div className='flex flex-col'>
+          <h3 className='label-standard'>Dificuldade</h3>
+          <SelectInput
+            id='difficulty'
+            name='difficulty'
+            required
+            options={difficultyOptions}
+            placeholder='Selecione'
+            isSearchable={false}
+            aria-describedby={errors?.fieldErrors?.difficulty ? 'difficulty-error' : undefined}
+            isDisabled={isPending || initialData?.admin_approved || initialData?.public}
+            aria-disabled={isPending || initialData?.admin_approved || initialData?.public}
+            defaultValue={
+              initialData?.difficulty
+                ? {
+                    value: difficultyMap[initialData.difficulty as Difficulty],
+                    label: initialData.difficulty,
+                  }
+                : ''
+            }
+          />
+          {errors?.fieldErrors?.difficulty &&
+            errors?.fieldErrors?.difficulty.map((value, index) => (
+              <p id='difficulty-error' key={index} className={errorClasses}>
                 {value}
               </p>
             ))}

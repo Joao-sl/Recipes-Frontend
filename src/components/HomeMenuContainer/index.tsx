@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { BookOpenIcon, PlusIcon, ShieldIcon, UserRoundIcon } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
 
 type MenuProps = {
   user: User | null;
@@ -17,23 +18,7 @@ export function HomeMenuContainer({ user }: MenuProps) {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownBtnRef = useRef<HTMLButtonElement>(null);
-  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isDesktop = window.matchMedia('(min-width: 640px)');
-      setIsDesktop(isDesktop.matches);
-
-      const handleMediaQueryChange = (e: MediaQueryListEvent) => {
-        setIsDesktop(e.matches);
-      };
-
-      isDesktop.addEventListener('change', handleMediaQueryChange);
-      return () => {
-        isDesktop.removeEventListener('change', handleMediaQueryChange);
-      };
-    }
-  }, []);
+  const isDesktop = useBreakpoint('(width > 640px)');
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -70,7 +55,7 @@ export function HomeMenuContainer({ user }: MenuProps) {
   ];
 
   if (isDesktop === null) {
-    return <div className='flex justify-center items-center w-full h-[73px] shadow-xl/5'></div>;
+    return <div className='flex justify-center items-center w-full h-[71px] shadow-sm'></div>;
   }
 
   return (
