@@ -8,6 +8,7 @@
   /* BASE COLORS */
   --color-primary: theme(colors.orange.500);
   --color-secondary: theme(colors.orange.600);
+  --color-primary-warm: #fbf7f1;
 
   /* HOVER/DISABLED/FOCUS */
   --color-primary-hover: theme(colors.orange.600);
@@ -17,12 +18,17 @@
   /* TEXTS */
   --color-base-color: theme(colors.gray.800);
   --color-muted: theme(colors.gray.500);
+  --color-muted-foreground: #78716c;
+  --color-foreground: #0c0a09;
   --color-inverse: theme(colors.white);
+  --color-content: theme(colors.stone.700);
 
   /* BACKGROUNDS */
+  --color-background: #f8f7f6;
   --color-default: theme(colors.gray.50);
   --color-divider: theme(colors.white);
   --color-surface: theme(colors.gray.200);
+  --color-recipe-warm: #f5f1ef;
 
   /* BORDERS */
   --color-root: theme(colors.gray.200);
@@ -79,12 +85,23 @@
     @apply text-sm sm:text-base text-muted;
   }
 
-  /* Home Menu */
+  /* HOME MENU */
   .dropdown-classes {
     @apply flex items-center gap-1 text-sm text-base-color px-1 py-2 rounded-lg hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px];
   }
   .mobile-menu-button {
     @apply flex justify-center items-center text-muted w-10 h-10 cursor-pointer rounded-full transition hover:bg-root;
+  }
+
+  /* RECIPE DIFFICULTY */
+  .easy {
+    @apply text-xs font-bold px-3 py-0.5 rounded-full shadow border border-transparent bg-green-100 text-green-800;
+  }
+  .medium {
+    @apply text-xs font-bold px-3 py-0.5 rounded-full shadow border border-transparent bg-yellow-100 text-yellow-800;
+  }
+  .hard {
+    @apply text-xs font-bold px-3 py-0.5 rounded-full shadow border border-transparent bg-red-100 text-red-800;
   }
 }
 

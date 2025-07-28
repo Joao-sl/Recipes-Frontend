@@ -2,6 +2,7 @@ export interface RawRecipe {
   title: string;
   description: string;
   preparation_time: string;
+  difficulty: string;
   ingredients: { name: string; quantity: string }[] | [];
   preparation_steps: { step: string }[] | [];
   servings: string;
@@ -9,7 +10,7 @@ export interface RawRecipe {
   slug: string;
   author: {
     username: string;
-    profile?: { first_name: string | null; last_name: string | null } | null;
+    profile?: { first_name: string | null; last_name: string | null; avatar: string | null } | null;
   };
   tips: string;
   public: boolean;
@@ -28,6 +29,8 @@ export interface Category {
   category_name: string;
   slug: string;
 }
+
+export type Difficulty = 'Fácil' | 'Médio' | 'Difícil';
 
 export type UserRecipeCardData = Pick<
   RawRecipe,
