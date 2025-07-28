@@ -25,11 +25,11 @@ export function DesktopMenu({
   setDropdownIsOpen,
 }: MenuProps) {
   return (
-    <nav className='flex justify-center items-center py-4 border-b border-root shadow-xl/5'>
+    <nav className='flex justify-center items-center py-4 border-b border-root shadow-sm'>
       <div className='flex justify-between items-center mx-4 gap-8 w-full max-w-[1160px]'>
         <Logo href='/' />
 
-        <form className='flex items-center gap-2 w-full min-w-30'>
+        <form className='flex items-center gap-2 w-full'>
           <InputText
             type='text'
             id='search'

@@ -16,6 +16,9 @@ export const RecipeSchema = z.object({
     .trim()
     .regex(/^\d{2}:\d{2}:\d{2}$/, 'O tempo de preparo deve estar no formato 00:00:00 ou HH:mm:ss')
     .optional(),
+  difficulty: z.enum(['E', 'M', 'H'], {
+    error: 'O valor deve ser E (Fácil) ou M (Médio) ou H (Difícil)',
+  }),
   servings: z.string().trim().max(25, 'Número de rendimento muito grande'),
   tips: z.string().trim(),
   categories: z.array(z.union([z.number(), z.string()])).optional(),
