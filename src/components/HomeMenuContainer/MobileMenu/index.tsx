@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { InputText } from '@/components/InputText';
 import { Portal } from '@/components/Portal';
 import { User } from '@/lib/auth/models';
 import { ArrowLeftIcon, LucideIcon, SearchIcon } from 'lucide-react';
@@ -40,7 +39,7 @@ export function MobileMenu({
   }, [searchIsOpen]);
 
   return (
-    <nav className='bg-divider px-4 py-3 mb-5 shadow-xl/5 border-b border-root'>
+    <nav className='px-4 py-3 mb-5 border-b border-root'>
       <div className='flex items-center justify-between relative'>
         <Portal>
           <div
@@ -62,15 +61,29 @@ export function MobileMenu({
                 <ArrowLeftIcon />
               </button>
 
-              <form className='flex items-center gap-2 w-full'>
-                <InputText
-                  type='text'
-                  id='search'
-                  name='search'
-                  placeholder='Busque por receitas ou categorias'
-                  Icon={SearchIcon}
-                  className='h-10'
-                />
+              <form className='flex items-center gap-2 w-full' action={'/search'}>
+                <div
+                  className={clsx(
+                    'flex items-center gap-2 border py-1.5 px-6 group',
+                    'rounded-full border-muted-foreground/20',
+                    'hover:bg-muted-foreground/5 w-full',
+                  )}
+                >
+                  <label htmlFor='search'>
+                    <SearchIcon size={18} />
+                  </label>
+
+                  <input
+                    className={clsx(
+                      'w-full outline-0 group-focus:border-primary transition',
+                      'placeholder:text-sm',
+                    )}
+                    type='text'
+                    id='search'
+                    name='q'
+                    placeholder='Busque por receitas ou categorias'
+                  />
+                </div>
                 <button
                   className='mobile-menu-button bg-primary p-2.5 text-white hover:!bg-secondary'
                   type='submit'
@@ -83,7 +96,12 @@ export function MobileMenu({
         </Portal>
 
         <div className='flex items-center justify-center'>
-          <button className='mobile-menu-button' onClick={() => setSearchIsOpen(state => !state)}>
+          <button
+            title='Abrir barra de pesquisa'
+            className='mobile-menu-button'
+            onClick={() => setSearchIsOpen(state => !state)}
+            aria-label='Abrir barra de pesquisa'
+          >
             <SearchIcon size={18} />
           </button>
         </div>
