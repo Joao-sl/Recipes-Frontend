@@ -36,3 +36,28 @@ export type UserRecipeCardData = Pick<
   RawRecipe,
   'title' | 'description' | 'created_at' | 'slug' | 'cover' | 'public' | 'admin_approved'
 >;
+
+export type DetailedRecipeCardData = Pick<
+  RawRecipe,
+  | 'title'
+  | 'description'
+  | 'difficulty'
+  | 'created_at'
+  | 'slug'
+  | 'cover'
+  | 'categories'
+  | 'preparation_time'
+  | 'servings'
+  | 'author'
+>;
+
+export type SimpleRecipeCardData = Pick<
+  RawRecipe,
+  'title' | 'description' | 'preparation_time' | 'difficulty' | 'slug' | 'cover'
+>;
+
+export type SiteStats = {
+  recipes_count: number;
+  category_count: number;
+  user_count: number;
+};

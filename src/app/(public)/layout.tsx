@@ -1,5 +1,6 @@
+import { Footer } from '@/components/Footer';
 import { HomeMenuContainer } from '@/components/HomeMenuContainer';
-import { getRefreshToken, getAccessToken, closeSession } from '@/lib/auth/manage-user-session';
+import { getRefreshToken, getAccessToken } from '@/lib/auth/manage-user-session';
 import { User } from '@/lib/auth/models';
 import { PUBLIC_SITE_URL } from '@/lib/config';
 
@@ -21,15 +22,15 @@ export default async function RootLayout({ children }: Readonly<RootLayoutProps>
         },
         next: { revalidate: 0 },
       })
-        .then(res => (res.ok ? res.json() : closeSession()))
-        .catch(() => closeSession())
+        .then(res => (res.ok ? res.json() : null))
+        .catch(() => null)
     : null;
 
   return (
     <div>
       <HomeMenuContainer user={user} />
       {children}
-      <footer>TODO: FOOTER</footer>
+      <Footer />
     </div>
   );
 }

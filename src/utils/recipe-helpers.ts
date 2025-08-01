@@ -1,7 +1,7 @@
 import { formatDuration } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-export function convertToReadableTime(string: string) {
+export function convertToReadableTime(string: string, shortFormat = false) {
   const timeList = string.split(':');
   if (
     timeList.length < 2 ||
@@ -18,6 +18,20 @@ export function convertToReadableTime(string: string) {
     },
     { locale: ptBR },
   );
+
+  if (shortFormat) {
+    const parts = formattedTime.split(' ');
+
+    if (parts.length === 2) {
+      const timeString = parts[1][0];
+      return `${parts[0]}${timeString}`;
+    }
+
+    const hoursString = parts[1][0];
+    const minutesString = parts[3][0];
+
+    return `${parts[0]}${hoursString} ${parts[2]}${minutesString}`;
+  }
 
   return formattedTime;
 }
