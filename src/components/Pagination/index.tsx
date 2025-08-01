@@ -3,13 +3,11 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
 type PaginationProps = {
-  props: {
-    current: number;
-    count: number;
-    pageSize: number;
-    next: string | null;
-    previous: string | null;
-  };
+  current: number;
+  count: number;
+  pageSize: number;
+  next: string | null;
+  previous: string | null;
 };
 
 function handlePaginationSize(current: number, lastPage: number) {
@@ -39,27 +37,24 @@ function handlePaginationSize(current: number, lastPage: number) {
   return [1, ELLIPSIS_L, current - 1, current, current + 1, ELLIPSIS_R, lastPage];
 }
 
-export function Pagination({ props }: PaginationProps) {
-  const lastPage = Math.ceil(props.count / props.pageSize);
-  const pagesArray = handlePaginationSize(props.current, lastPage);
-
-  const commonClasses = 'flex items-center justify-center h-8 min-w-8 text-sm';
-  const linkCommonClasses =
-    'text-muted hover:bg-primary/20 hover:border-primary border-standard-darker rounded-md';
+export function Pagination({ current, count, pageSize, next, previous }: PaginationProps) {
+  const lastPage = Math.ceil(count / pageSize);
+  const pagesArray = handlePaginationSize(current, lastPage);
 
   return (
     <nav className='flex items-center gap-1 overflow-hidden'>
-      {props.current > 1 && (
+      {previous && (
         <Link
-          href={`?page=${props.current - 1}`}
-          className={clsx(commonClasses, linkCommonClasses, 'hidden sm:flex')}
+          href={`?page=${current - 1}`}
+          className={clsx('pagination-container pagination-links hidden sm:flex')}
         >
           <ChevronLeftIcon size={16} />
         </Link>
       )}
+
       {pagesArray.map(page =>
         page < 0 ? (
-          <p key={page} className={clsx(commonClasses, 'text-slate-600 cursor-default')}>
+          <p key={page} className={clsx('pagination-container text-slate-600 cursor-default')}>
             ...
           </p>
         ) : (
@@ -67,21 +62,21 @@ export function Pagination({ props }: PaginationProps) {
             key={page}
             href={`?page=${page}`}
             className={clsx(
-              page === props.current
-                ? 'bg-primary border-0 text-inverse cursor-default'
-                : linkCommonClasses,
-              commonClasses,
-              'rounded-md font-medium',
+              'pagination-container rounded-md font-medium',
+              page === current
+                ? 'bg-primary border-0 text-inverse cursor-default pointer-events-none'
+                : 'pagination-links',
             )}
           >
             {page}
           </Link>
         ),
       )}
-      {props.current < lastPage && (
+
+      {next && (
         <Link
-          href={`?page=${props.current + 1}`}
-          className={clsx(commonClasses, linkCommonClasses, 'hidden sm:flex')}
+          href={`?page=${current + 1}`}
+          className={clsx('pagination-container pagination-links hidden sm:flex')}
         >
           <ChevronRightIcon size={16} />
         </Link>

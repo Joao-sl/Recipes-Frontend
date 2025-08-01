@@ -58,11 +58,11 @@
     @apply text-muted text-sm font-medium mb-2;
   }
   .input-standard {
-    @apply text-sm py-2 px-3 border border-root rounded-md outline-none transition duration-500;
+    @apply text-sm py-2 px-3 border border-root rounded-lg outline-none transition duration-500;
     @apply focus:border-primary/70 disabled:bg-disabled placeholder:text-sm hover:border-slate-300;
   }
   .select-input-standard {
-    @apply text-sm py-2 px-3 border rounded-md outline-none;
+    @apply text-sm py-2 px-3 border rounded-lg outline-none;
   }
 
   /* PRIVATE PAGES */
@@ -103,6 +103,22 @@
   .hard {
     @apply text-xs font-bold px-3 py-0.5 rounded-full shadow border border-transparent bg-red-100 text-red-800;
   }
+
+  /* PUBLIC PAGES */
+  .max-content-size {
+    @apply max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .category-link {
+    @apply p-6 border-2 rounded-xl border-muted-foreground/15 shadow transition-all hover:scale-105 hover:border-primary/50 hover:shadow-lg;
+  }
+
+  /* PAGINATION */
+  .pagination-container {
+    @apply flex items-center justify-center h-8 min-w-8 text-sm;
+  }
+  .pagination-links {
+    @apply text-muted hover:bg-primary/20 hover:border-primary rounded-md;
+  }
 }
 
 :root {
@@ -111,6 +127,10 @@
   --toastify-color-progress-info: var(--toastify-color-info);
   --toastify-color-progress-success: var(--toastify-color-success);
   --toastify-color-progress-warning: var(--toastify-color-warning);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

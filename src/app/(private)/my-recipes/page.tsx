@@ -55,9 +55,11 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
     previous: string | null;
     results: RawRecipe[];
   };
+
   const recipes: UserRecipeCardData[] = recipesRawData.results.map(element =>
     mapToCardData(element),
   );
+
   return (
     <div className='space-y-5 mb-8'>
       <div className='flex flex-col px-6 mt-4 sm:items-center sm:justify-between sm:flex-row'>
@@ -91,13 +93,11 @@ export default async function MyRecipesPage({ searchParams }: MyRecipesPageProps
       {recipesRawData.next != null || recipesRawData.previous != null ? (
         <div className='flex justify-center mt-20'>
           <Pagination
-            props={{
-              current: page,
-              count: recipesRawData.count,
-              pageSize: pageSize,
-              next: recipesRawData.next,
-              previous: recipesRawData.previous,
-            }}
+            current={page}
+            count={recipesRawData.count}
+            pageSize={pageSize}
+            next={recipesRawData.next}
+            previous={recipesRawData.previous}
           />
         </div>
       ) : (

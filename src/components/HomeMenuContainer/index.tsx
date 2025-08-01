@@ -18,7 +18,7 @@ export function HomeMenuContainer({ user }: MenuProps) {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownBtnRef = useRef<HTMLButtonElement>(null);
-  const isDesktop = useBreakpoint('(width > 640px)');
+  const isDesktop = useBreakpoint('(width >= 768px)');
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

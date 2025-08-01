@@ -3,7 +3,8 @@ import { MenuDropdown } from '../MenuDropdown';
 import { Logo } from '@/components/Logo';
 import { RefObject } from 'react';
 import { LucideIcon, SearchIcon } from 'lucide-react';
-import { InputText } from '@/components/InputText';
+
+import clsx from 'clsx';
 
 type MenuProps = {
   user: User | null;
@@ -25,18 +26,45 @@ export function DesktopMenu({
   setDropdownIsOpen,
 }: MenuProps) {
   return (
-    <nav className='flex justify-center items-center py-4 border-b border-root shadow-sm'>
-      <div className='flex justify-between items-center mx-4 gap-8 w-full max-w-[1160px]'>
+    <nav className='flex justify-center items-center p-4 border-b border-root'>
+      <div className='flex justify-between items-center gap-8 w-full max-w-[1160px]'>
         <Logo href='/' />
 
-        <form className='flex items-center gap-2 w-full'>
-          <InputText
-            type='text'
-            id='search'
-            name='search'
-            placeholder='Busque por receitas ou categorias'
-            Icon={SearchIcon}
-          />
+        <form className='flex items-center gap-2' action={'/search'}>
+          <div
+            className={clsx(
+              'flex items-center gap-2 border py-1.5 px-6 group',
+              'rounded-full border-muted-foreground/20',
+              'hover:bg-muted-foreground/5',
+            )}
+          >
+            <label htmlFor='search'>
+              <SearchIcon size={18} />
+            </label>
+
+            <input
+              className={clsx(
+                'w-full outline-0 group-focus:border-primary transition',
+                'placeholder:text-sm lg:w-74',
+              )}
+              type='text'
+              id='search'
+              name='q'
+              placeholder='Busque por receitas ou categorias'
+            />
+          </div>
+
+          <button
+            className={clsx(
+              'px-4 text-sm h-[35px] rounded-full',
+              'text-inverse rounded-full font-semibold',
+              'cursor-pointer transition hover:shadow',
+              'bg-gradient-to-br from-primary to-primary/60 hover:bg-secondary',
+            )}
+            type='submit'
+          >
+            Buscar
+          </button>
         </form>
 
         <MenuDropdown

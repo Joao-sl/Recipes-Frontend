@@ -46,13 +46,14 @@ export function MenuDropdown({
 
           <div
             className={clsx(
-              'border border-root shadow-lg bg-white min-w-max absolute top-full mt-2 right-0 z-50 p-4 rounded-lg',
+              'border border-root shadow-lg bg-white min-w-max',
+              'absolute top-full mt-2 right-0 z-50 p-4 rounded-lg',
               'transition duration-500',
               dropdownIsOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
             )}
             ref={dropdownRef}
           >
-            <div className='flex flex-col text-base-color'>
+            <div className='flex flex-col text-foreground'>
               <div className='flex items-center gap-2 pb-3 mb-3 border-b border-root'>
                 <div className='flex relative rounded-full w-13 h-13'>
                   <Image
@@ -88,21 +89,39 @@ export function MenuDropdown({
         </div>
       ) : (
         <>
-          <div className='sm:hidden flex items-center justify-center'>
-            <Link href={'/login'} className='mobile-menu-button'>
+          <div className='md:hidden flex items-center justify-center'>
+            <Link
+              title='Login'
+              href={'/login'}
+              className='mobile-menu-button'
+              aria-label='Ir para a página de login'
+            >
               <UserRoundIcon size={18} />
             </Link>
           </div>
-          <div className='hidden sm:flex items-center gap-4 text-base-color text-sm font-medium'>
+          <div
+            className={clsx(
+              'hidden md:flex items-center gap-4',
+              'text-base-color text-sm font-medium',
+            )}
+          >
             <Link
-              className='flex justify-center items-center w-20 h-[35px] border border-root-darker rounded-full hover:bg-root-darker transition'
+              className={clsx(
+                'flex justify-center items-center w-20 h-[35px]',
+                'border border-muted-foreground/20 rounded-full',
+                'transition hover:bg-muted-foreground/10 hover:border-transparent',
+              )}
               href={'/login'}
             >
               Entrar
             </Link>
 
             <Link
-              className='flex justify-center items-center w-38 h-[35px] text-inverse bg-gradient-to-br from-primary to-primary/60 rounded-full hover:bg-secondary transition'
+              className={clsx(
+                'flex justify-center items-center w-38 h-[35px]',
+                'text-inverse bg-gradient-to-br from-primary to-primary/60',
+                'rounded-full hover:scale-105 hover:shadow transition',
+              )}
               href={'/register'}
             >
               Criar uma conta
