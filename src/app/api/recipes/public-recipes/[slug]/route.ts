@@ -1,8 +1,10 @@
 import { API_DOMAIN } from '@/lib/config';
 import { NextRequest, NextResponse } from 'next/server';
+
 type RouteHandlerProps = {
   params: Promise<{ slug: string }>;
 };
+
 export async function GET(request: NextRequest, { params }: RouteHandlerProps) {
   const resolvedParams = await params;
 

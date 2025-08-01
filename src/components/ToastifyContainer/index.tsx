@@ -1,11 +1,11 @@
 'use client';
 
-import { Flip, ToastContainer } from 'react-toastify';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 export function ToastifyContainer() {
   return (
     <ToastContainer
-      position='top-center'
+      position='bottom-right'
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
@@ -15,7 +15,7 @@ export function ToastifyContainer() {
       draggable
       pauseOnHover
       theme='light'
-      transition={Flip}
+      transition={Bounce}
     />
   );
 }
