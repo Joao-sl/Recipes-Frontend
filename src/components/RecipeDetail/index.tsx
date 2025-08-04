@@ -50,7 +50,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
       <div
         className={clsx(
           'relative rounded-2xl overflow-hidden',
-          'bg-gradient-to-br from-recipe-warm to-background',
+          'bg-gradient-to-br from-recipe-warm/30 to-transparent',
         )}
       >
         <div className={clsx('grid gap-8 p-8', 'md:grid-cols-2 md:grid-rows-1')}>

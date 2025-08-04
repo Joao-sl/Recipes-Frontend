@@ -35,7 +35,7 @@ export function RecipeCard({
                 'text-xs font-medium  px-2 py-1 rounded-full',
                 recipeData.admin_approved
                   ? 'bg-green-600 text-inverse'
-                  : 'bg-white text-base-color',
+                  : 'bg-white text-foreground',
               )}
             >
               {recipeData.admin_approved ? 'Aprovada' : 'Em análise'}
@@ -43,7 +43,7 @@ export function RecipeCard({
             <p
               className={clsx(
                 'text-xs font-medium px-2 py-1 rounded-full ',
-                recipeData.public ? 'bg-primary text-inverse' : 'bg-white text-base-color',
+                recipeData.public ? 'bg-primary text-inverse' : 'bg-white text-foreground',
               )}
             >
               {recipeData.public ? 'Publicada' : 'Não publicada'}
@@ -52,7 +52,7 @@ export function RecipeCard({
         </div>
 
         <div className='space-y-4 p-4 text-sm text-muted'>
-          <h1 className='font-semibold text-lg mb-2 line-clamp-1 text-base-color'>
+          <h1 className='font-semibold text-lg mb-2 line-clamp-1 text-foreground'>
             {recipeData.title}
           </h1>
           <p className='line-clamp-2 h-10'>{recipeData.description}</p>

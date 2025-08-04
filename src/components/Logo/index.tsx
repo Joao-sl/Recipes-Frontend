@@ -32,7 +32,7 @@ export function Logo({ href, size = 'md' }: LogoProps) {
           <div
             className={clsx(
               'text-inverse p-2 rounded-md',
-              'bg-gradient-to-br from-orange-500 to-orange-300',
+              'bg-gradient-to-br from-primary to-primary/50',
             )}
           >
             <ChefHatIcon size={logoSize[size]} />
@@ -40,7 +40,7 @@ export function Logo({ href, size = 'md' }: LogoProps) {
           <h1
             className={clsx(
               'font-bold bg-clip-text text-transparent',
-              'bg-gradient-to-br from-orange-500 to-orange-300 ',
+              'bg-gradient-to-br from-primary to-primary/50 ',
               siteNameSize[size],
             )}
           >

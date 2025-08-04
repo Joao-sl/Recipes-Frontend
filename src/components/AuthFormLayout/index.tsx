@@ -64,7 +64,7 @@ export function AuthFormLayout({
               'max-w-[350px] lg:min-w-[260px] lg:min-h-[340px] lg:w-[350px]',
             )}
           >
-            <h2 className='text-center text-4xl font-bold text-base-color'>{title}</h2>
+            <h2 className='text-center text-4xl font-bold text-foreground'>{title}</h2>
             <p className=' text-center'>{description}</p>
 
             {children}

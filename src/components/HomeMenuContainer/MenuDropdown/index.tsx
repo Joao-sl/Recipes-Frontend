@@ -102,7 +102,7 @@ export function MenuDropdown({
           <div
             className={clsx(
               'hidden md:flex items-center gap-4',
-              'text-base-color text-sm font-medium',
+              'text-foreground text-sm font-medium',
             )}
           >
             <Link

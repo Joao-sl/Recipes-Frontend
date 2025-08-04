@@ -16,11 +16,10 @@
   --color-disabled: theme(colors.gray.300);
 
   /* TEXTS */
-  --color-base-color: theme(colors.gray.800);
-  --color-muted: theme(colors.gray.500);
   --color-muted-foreground: #78716c;
   --color-foreground: #0c0a09;
   --color-inverse: theme(colors.white);
+  --color-muted: theme(colors.gray.500);
   --color-content: theme(colors.stone.700);
 
   /* BACKGROUNDS */
@@ -73,7 +72,7 @@
     @apply bg-divider border border-root p-6 mb-10 shadow-lg rounded-lg;
   }
   .form-title {
-    @apply text-2xl text-base-color font-semibold mb-6;
+    @apply text-2xl text-foreground font-semibold mb-6;
   }
   .content-max-size {
     @apply max-w-3xl mx-auto;
@@ -87,10 +86,23 @@
 
   /* HOME MENU */
   .dropdown-classes {
-    @apply flex items-center gap-1 text-sm text-base-color px-1 py-2 rounded-lg hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px];
+    @apply flex items-center gap-1 text-sm text-foreground px-1 py-2 rounded-lg hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px];
   }
   .mobile-menu-button {
     @apply flex justify-center items-center text-muted w-10 h-10 cursor-pointer rounded-full transition hover:bg-root;
+  }
+
+  /* PROFILE MENU */
+  .profile-menu-active {
+    @apply bg-primary/90 text-white hover:bg-primary cursor-default pointer-events-none;
+  }
+  .profile-menu-link {
+    @apply flex items-center gap-3 text-sm
+    px-3 py-1.5 rounded-lg hover:bg-gray-200
+    [&_svg]:w-[16px] [&_svg]:h-[16px];
+  }
+  .profile-menu-subtitle {
+    @apply text-sm text-muted-foreground font-medium mb-3;
   }
 
   /* RECIPE DIFFICULTY */

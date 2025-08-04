@@ -100,36 +100,42 @@ export function Footer() {
         <div className='space-y-3'>
           <h4 className='font-semibold'>Links Úteis</h4>
 
-          <ul className='flex flex-col gap-1'>
-            <Link className='transition hover:text-secondary' href={'/about'}>
+          <div className='flex flex-col gap-1'>
+            <Link className='w-fit transition hover:text-secondary' href={'/about'}>
               Sobre Nós
             </Link>
-            <Link className='transition hover:text-secondary' href={'mailto:receitolas@gmail.com'}>
+            <Link
+              className='w-fit transition hover:text-secondary'
+              href={'mailto:receitolas@gmail.com'}
+            >
               Contato
             </Link>
-            <Link className='transition hover:text-secondary' href={'/privacy-policy'}>
+            <Link className='w-fit transition hover:text-secondary' href={'/privacy-policy'}>
               Política de Privacidade
             </Link>
-            <Link className='transition hover:text-secondary' href={'/terms'}>
+            <Link className='w-fit transition hover:text-secondary' href={'/terms'}>
               Termos de Uso
             </Link>
-          </ul>
+          </div>
         </div>
 
         <div className='space-y-3'>
           <h4 className='font-semibold'>Categorias</h4>
 
           <div className='flex flex-col gap-1'>
-            <Link className='transition hover:text-secondary' href={'search/?q=cafe-da-manha'}>
+            <Link
+              className='w-fit transition hover:text-secondary'
+              href={'search/?q=cafe-da-manha'}
+            >
               Café da manhã
             </Link>
-            <Link className='transition hover:text-secondary' href={'search/?q=almoço'}>
+            <Link className='w-fit transition hover:text-secondary' href={'search/?q=almoço'}>
               Almoço
             </Link>
-            <Link className='transition hover:text-secondary' href={'search/?q=jantar'}>
+            <Link className='w-fit transition hover:text-secondary' href={'search/?q=jantar'}>
               Jantar
             </Link>
-            <Link className='transition hover:text-secondary' href={'search/?q=sobremesa'}>
+            <Link className='w-fit transition hover:text-secondary' href={'search/?q=sobremesa'}>
               Sobremesa
             </Link>
           </div>

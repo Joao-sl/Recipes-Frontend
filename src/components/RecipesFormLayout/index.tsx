@@ -84,7 +84,7 @@ export function RecipeFormLayout({
         <p className='text-secondary font-semibold mb-4'>
           Parabéns e obrigado, sua receita foi aprovada, você não poderá mais a alterar, confira se
           ela já está disponível&nbsp;
-          <a href={`/${initialData.slug}`} target='_blank' className='text-base-color'>
+          <a href={`/${initialData.slug}`} target='_blank' className='text-foreground'>
             aqui
           </a>
         </p>
@@ -331,7 +331,7 @@ export function RecipeFormLayout({
         </div>
 
         <div className='space-y-4'>
-          <h3 className='font-medium text-base-color'>Ingredientes</h3>
+          <h3 className='font-medium text-foreground'>Ingredientes</h3>
 
           <div>
             {errors?.fieldErrors?.ingredients && (
@@ -399,7 +399,7 @@ export function RecipeFormLayout({
         </div>
 
         <div className='space-y-4'>
-          <h3 className='font-medium text-base-color'>Modo de preparo</h3>
+          <h3 className='font-medium text-foreground'>Modo de preparo</h3>
 
           <div>
             {errors?.fieldErrors?.preparation_steps && (
@@ -467,7 +467,7 @@ export function RecipeFormLayout({
               id='terms'
               disabled={isPending || initialData?.admin_approved || initialData?.public}
             />
-            <label className='text-base-color' htmlFor='terms'>
+            <label className='text-foreground' htmlFor='terms'>
               Confirmo que li e concordo com os&nbsp;
               <a
                 aria-label='Link para os termos de uso'

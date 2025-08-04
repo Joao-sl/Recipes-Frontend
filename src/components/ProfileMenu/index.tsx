@@ -5,21 +5,19 @@ import {
   CookingPotIcon,
   HomeIcon,
   LogOutIcon,
-  MenuIcon,
   PlusIcon,
   ShieldIcon,
+  SidebarIcon,
   UserRoundIcon,
-  UtensilsIcon,
   XIcon,
 } from 'lucide-react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SITE_NAME } from '@/lib/config';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { Button } from '../Button';
+import { Logo } from '../Logo';
 
 export function ProfileMenu() {
   const router = useRouter();
@@ -44,13 +42,6 @@ export function ProfileMenu() {
     setIsOpen(false);
   }, [path]);
 
-  const activeClasses = 'bg-primary text-inverse hover:bg-primary cursor-default';
-  const linkClasses = clsx(
-    'flex items-center gap-3 text-sm text-base-color px-3 py-2 rounded-lg',
-    'hover:bg-gray-200 [&_svg]:w-[18px] [&_svg]:h-[18px]',
-  );
-  const subTitleMenuClasses = 'text-sm text-muted font-medium mb-3';
-
   const profileLinks = [
     { href: '/profile', labelIcon: UserRoundIcon, label: 'Perfil' },
     { href: '/new-recipe', labelIcon: PlusIcon, label: 'Nova Receita' },
@@ -64,32 +55,33 @@ export function ProfileMenu() {
   ];
 
   return (
-    <div className='md:w-64'>
+    <nav className='md:w-64 text-foreground'>
       <div className='flex md:hidden'>
-        <Button
-          className={'w-full rounded-none'}
+        <button
+          className={clsx('flex gap-1 p-3 w-full transition shadow')}
           onClick={() => setIsOpen(state => !state)}
           aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         >
-          {isOpen ? <XIcon /> : <MenuIcon size={22} absoluteStrokeWidth />}
-          {isOpen ? 'Fechar' : 'Menu'}
-        </Button>
+          <div className='p-2 rounded-lg hover:bg-primary hover:text-inverse'>
+            {isOpen ? <XIcon /> : <SidebarIcon size={18} />}
+          </div>
+        </button>
       </div>
 
       {isOpen && (
         <div
-          className={clsx('fixed inset-0 z-10 backdrop-filter backdrop-brightness-40 md:hidden')}
+          className='fixed inset-0 z-10 backdrop-brightness-40 md:hidden'
           onClick={() => setIsOpen(false)}
           aria-hidden='true'
         />
       )}
 
-      <nav
+      <div
         className={clsx(
           'flex  w-64 h-screen border-r border-root z-50 transition duration-500',
           'md:fixed md:translate-x-0 md:opacity-100',
           isOpen
-            ? 'translate-x-0 fixed top-0 opacity-100 bg-divider h-screen rounded-lg'
+            ? 'translate-x-0 fixed top-0 opacity-100 bg-divider h-screen '
             : '-translate-x-[107%] absolute top-0 opacity-0',
         )}
         role='navigation'
@@ -97,21 +89,21 @@ export function ProfileMenu() {
       >
         <div className='flex flex-col h-full w-full overflow-y-auto'>
           <button
-            className='absolute top-3 right-3 cursor-pointer transition md:hidden hover:text-red-600'
+            className={clsx(
+              'absolute top-3 right-3 cursor-pointer',
+              'transition md:hidden hover:text-red-600',
+            )}
             onClick={() => setIsOpen(state => !state)}
           >
             <XIcon size={20} />
           </button>
 
-          <div className='flex items-center gap-4 p-6 border-b border-root'>
-            <div className='p-2 bg-primary rounded-lg'>
-              <UtensilsIcon size={25} className='text-white' />
-            </div>
-            <h1 className='text-xl text-base-color font-bold'>{SITE_NAME.toUpperCase()}</h1>
+          <div className='flex items-center gap-4 px-6 py-4 border-b border-root'>
+            <Logo size='sm' />
           </div>
 
           <div className='p-6'>
-            <h2 className={subTitleMenuClasses}>Configurações</h2>
+            <h2 className='profile-menu-subtitle'>Configurações</h2>
             <div className='space-y-1'>
               {profileLinks.map(({ href, labelIcon: Icon, label }) => {
                 const isActive = path === href || path.startsWith(href);
@@ -119,7 +111,7 @@ export function ProfileMenu() {
                   <Link
                     key={href}
                     href={href}
-                    className={`${linkClasses} ${isActive ? activeClasses : ''}`}
+                    className={`profile-menu-link ${isActive ? 'profile-menu-active' : null}`}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <Icon />
@@ -129,22 +121,24 @@ export function ProfileMenu() {
               })}
             </div>
 
-            <div className='space-y-1 mt-6'>
-              <h2 className={subTitleMenuClasses}>Navegação</h2>
-              {siteLinks.map(({ href, labelIcon: Icon, label }) => {
-                return (
-                  <Link key={href} href={href} className={`${linkClasses}`}>
-                    <Icon />
-                    {label}
-                  </Link>
-                );
-              })}
+            <div className='mt-6'>
+              <h2 className='profile-menu-subtitle'>Navegação</h2>
+              <div className='space-y-1'>
+                {siteLinks.map(({ href, labelIcon: Icon, label }) => {
+                  return (
+                    <Link key={href} href={href} className='profile-menu-link'>
+                      <Icon />
+                      {label}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
           <div className='flex mb-2 border-t border-root mt-auto' onClick={handleLogout}>
             <div className='px-6 h-full mt-2 w-full'>
-              <button className={clsx(linkClasses, 'w-full cursor-pointer')}>
+              <button className='profile-menu-link w-full cursor-pointer'>
                 <LogOutIcon size={18} /> Sair
               </button>
             </div>
@@ -154,7 +148,7 @@ export function ProfileMenu() {
         <div aria-live='polite' className='sr-only' id='logout-feedback'>
           {ariaErrorMessage}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }

@@ -16,7 +16,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const common =
-    'flex items-center justify-center text-inverse font-medium cursor-pointer rounded-md transition disabled:bg-disabled disabled:text-base-color disabled:cursor-default';
+    'flex items-center justify-center text-inverse font-medium cursor-pointer rounded-md transition disabled:bg-disabled disabled:text-foreground disabled:cursor-default';
 
   const buttonClasses = {
     default: clsx('bg-primary', 'hover:bg-primary/80', common),
