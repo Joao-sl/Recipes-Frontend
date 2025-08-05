@@ -10,8 +10,17 @@
       "(?:'|\"|`)([^']*)(?:'|\"|`)"
     ]
   ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "code-runner.executorMap": {
     "typescript": "cls ; npx tsx",
     "javascript": "cls ; node"
-  }
+  },
+  "cSpell.words": [
+    "brazilian",
+    "Fôrmas",
+    "Fprofile",
+    "toastify"
+  ]
 }

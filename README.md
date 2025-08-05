@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recipes App (Frontend)
 
-## Getting Started
+A web interface built with **React** and **Next.js** to interact with the
+[RecipesAPI](https://github.com/Joao-sl/RecipesAPI), allowing users to browse, create, edit, and
+share recipes in a responsive, modern SPA.
 
-First, run the development server:
+## 🚀 Main Features
+
+- **Recipe Listing** Display public recipes in a grid or list view with lazy-loading.
+
+- **Recipe CRUD** Create, update, and delete recipes via forms with real-time validation.
+
+- **Authentication & Protected Routes** User login/registration via JWT; protected pages for
+  creating/editing.
+
+- **Search & Filters** Search by title or category.
+
+- **Image Upload** Preview cover images before upload using `next/image` + API.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js (React 18+)
+- **Styling**: Tailwind CSS
+- **Auth**: JWT
+- **State Management**: React Query for data caching
+- **Forms**: Zod for validation
+
+## 💻 Local Development
+
+### Prerequisites
+
+- Node.js 16+
+- npm or yarn
+- [RecipesAPI](https://github.com/Joao-sl/RecipesAPI) backend running at `http://localhost:8000`
+
+### Setup
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/Joao-sl/Recipes-Frontend.git
+   cd recipes-frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Create `.env.local` file:
+
+   ```
+   Follow the instructions in .env-example to populate .env.local
+   ```
+
+4. Start dev server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   Open http://localhost:3000 in your browser.
+
+## 📦 Useful Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build  # Create production build
+npm run start  # Serve production build
+npm run lint   # Run ESLint
+npm run format # Run Prettier
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📄 Documentation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **API Swagger**: `http://localhost:8000/api/schema/swagger-ui/`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the [MIT License](LICENSE).
