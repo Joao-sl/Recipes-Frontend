@@ -5,6 +5,7 @@ import { SimpleRecipeCard } from '@/components/SimpleRecipeCard';
 import { PUBLIC_SITE_URL } from '@/lib/config';
 import { mapToSimpleCardData } from '@/lib/recipes/mappers';
 import { RawRecipe, SimpleRecipeCardData } from '@/lib/recipes/models';
+import clsx from 'clsx';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -66,7 +67,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             {Math.ceil(rawData.count / pageSize)} páginas
           </p>
 
-          <div className='grid sm:grid-cols-2 md:grid-cols-4 gap-6'>
+          <div
+            className={clsx(
+              'grid gap-6 min-h-[300px]',
+              'sm:grid-cols-2 md:grid-cols-4 lg:min-h-[570px]',
+            )}
+          >
             {recipes.map((v, i) => (
               <div key={i}>
                 <SimpleRecipeCard recipe={v} />

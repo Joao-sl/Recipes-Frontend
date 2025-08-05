@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className='py-12 text-foreground bg-background'>
-      <div className='grid grid-cols-4 mb-8 max-content-size mx-auto '>
+      <div className='grid gap-4 sm:grid-cols-4 mb-8 max-content-size mx-auto '>
         <div className='col-span-2 space-y-4'>
           <Logo size='sm' />
 
