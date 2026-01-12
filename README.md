@@ -2,7 +2,7 @@
 
 A web interface built with **React** and **Next.js** to interact with the
 [RecipesAPI](https://github.com/Joao-sl/RecipesAPI), allowing users to browse, create, edit, and
-share recipes in a responsive, modern SPA.
+share recipes in a responsive, modern site.
 
 ## 🚀 Main Features
 
